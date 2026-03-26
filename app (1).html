@@ -1,0 +1,3252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Finance English Commando</title>
+<style>
+:root{
+--bg:#ffffff;--bg2:#f5f5f5;--bg3:#ebebeb;--txt:#111111;--txt2:#666666;--txt3:#999999;
+--border:#e0e0e0;--border2:#cccccc;--green:#16a34a;--green-bg:#f0fdf4;--green-txt:#15803d;
+--red:#dc2626;--red-bg:#fef2f2;--red-txt:#b91c1c;--orange:#ea580c;--orange-bg:#fff7ed;--orange-txt:#c2410c;
+--blue:#2563eb;--blue-bg:#eff6ff;--blue-txt:#1d4ed8;--radius:12px;--radius-sm:8px;
+--font:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+--mono:'SF Mono','Cascadia Code','Fira Code',monospace;
+}
+[data-theme="dark"]{
+--bg:#111111;--bg2:#1a1a1a;--bg3:#252525;--txt:#f0f0f0;--txt2:#a0a0a0;--txt3:#666666;
+--border:#2a2a2a;--border2:#3a3a3a;--green-bg:#052e16;--green-txt:#4ade80;
+--red-bg:#450a0a;--red-txt:#f87171;--orange-bg:#431407;--orange-txt:#fb923c;
+--blue-bg:#172554;--blue-txt:#60a5fa;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--font);background:var(--bg);color:var(--txt);transition:background .3s,color .3s}
+.app{max-width:480px;margin:0 auto;height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--bg);position:relative;overflow:hidden}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--bg);z-index:10}
+.logo{font-weight:600;font-size:15px;letter-spacing:-.3px}
+.hdr-right{display:flex;align-items:center;gap:8px}
+.hdr-sub{font-size:12px;color:var(--txt3)}
+.dm-btn{background:none;border:1px solid var(--border2);border-radius:20px;padding:4px 12px;font-size:11px;cursor:pointer;color:var(--txt2);font-family:var(--font);transition:all .2s}
+.dm-btn:hover{border-color:var(--txt)}
+main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
+.screen{padding:20px;animation:fadeUp .35s ease both;min-height:100%}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+@keyframes growW{from{width:0}to{width:var(--tw)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+nav{display:flex;border-top:1px solid var(--border);flex-shrink:0;background:var(--bg);z-index:10}
+.tab{flex:1;text-align:center;padding:10px 0 max(12px,env(safe-area-inset-bottom));cursor:pointer;transition:all .2s;border-top:2px solid transparent;-webkit-tap-highlight-color:transparent}
+.tab.active{border-top-color:var(--txt)}
+.tab-icon{font-size:16px;margin-bottom:2px;color:var(--txt3);transition:color .2s}
+.tab-label{font-size:11px;font-weight:500;color:var(--txt3);transition:color .2s}
+.tab.active .tab-icon,.tab.active .tab-label{color:var(--txt)}
+.metric{background:var(--bg2);border-radius:var(--radius-sm);padding:12px 10px;text-align:center;animation:popIn .35s ease both}
+.metric-label{font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.metric-val{font-size:16px;font-weight:600}
+.card{padding:16px;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:border-color .2s,transform .15s;animation:fadeUp .35s ease both}
+.card:hover{border-color:var(--border2)}
+.card:active{transform:scale(.98)}
+.card-title{font-size:15px;font-weight:600;margin-bottom:3px}
+.card-sub{font-size:13px;color:var(--txt2)}
+.btn{width:100%;padding:14px;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:500;cursor:pointer;font-family:var(--font);transition:opacity .2s,transform .1s}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--txt);color:var(--bg)}
+.btn-primary:hover{opacity:.85}
+.btn-ghost{background:none;border:1px solid var(--border2);color:var(--txt)}
+.btn-ghost:hover{background:var(--bg2)}
+.section-label{font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.progress-track{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.progress-fill{height:4px;background:var(--txt);border-radius:2px;transition:width .6s ease}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500}
+.tag-green{background:var(--green-bg);color:var(--green-txt)}
+.tag-red{background:var(--red-bg);color:var(--red-txt)}
+.tag-orange{background:var(--orange-bg);color:var(--orange-txt)}
+.tag-blue{background:var(--blue-bg);color:var(--blue-txt)}
+input[type="text"]{width:100%;padding:12px 14px;border:1px solid var(--border2);border-radius:var(--radius-sm);font-size:16px;font-family:var(--font);background:var(--bg);color:var(--txt);outline:none;transition:border-color .2s}
+input[type="text"]:focus{border-color:var(--txt)}
+.rating-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rating-btn{padding:14px;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:500;cursor:pointer;transition:opacity .2s,transform .1s;font-family:var(--font)}
+.rating-btn:active{transform:scale(.96)}
+.r-again{background:var(--red-bg);color:var(--red-txt)}
+.r-hard{background:var(--orange-bg);color:var(--orange-txt)}
+.r-good{background:var(--green-bg);color:var(--green-txt)}
+.r-easy{background:var(--blue-bg);color:var(--blue-txt)}
+.feedback{padding:16px;border-radius:var(--radius-sm);margin-bottom:12px;animation:popIn .3s ease both}
+.feedback-ok{background:var(--green-bg);color:var(--green-txt)}
+.feedback-err{background:var(--red-bg);color:var(--red-txt)}
+.example-box{padding:14px;background:var(--bg2);border-radius:var(--radius-sm);margin-top:12px}
+.example-label{font-size:12px;color:var(--txt3);margin-bottom:6px}
+.example-text{font-size:14px;font-style:italic;line-height:1.5}
+.timer-display{font-size:22px;font-weight:600;font-family:var(--mono)}
+.timer-warn{color:var(--orange)}
+.timer-crit{color:var(--red);animation:pulse .8s ease infinite}
+.back-btn{background:none;border:none;font-size:14px;cursor:pointer;color:var(--txt2);padding:0;font-family:var(--font)}
+.back-btn:hover{color:var(--txt)}
+.dot-row{display:flex;gap:4px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.dot{width:6px;height:6px;border-radius:50%;transition:all .3s}
+.tutor-card{padding:16px;border:2px solid var(--txt);border-radius:var(--radius);animation:fadeUp .35s ease both}
+.ring-container{position:relative;width:130px;height:130px;margin:0 auto}
+.ring-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.hidden{display:none!important}
+@media(max-width:480px){.app{max-width:100%}}
+
+/* ── NOUVEAUX MODES ── */
+.mode-card{padding:18px;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:border-color .2s,transform .15s,background .2s;animation:fadeUp .35s ease both;position:relative;overflow:hidden}
+.mode-card:hover{border-color:var(--border2);background:var(--bg2)}
+.mode-card:active{transform:scale(.98)}
+.mode-card-icon{width:38px;height:38px;border-radius:10px;background:var(--bg3);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.mode-card-title{font-size:15px;font-weight:600;margin-bottom:3px}
+.mode-card-sub{font-size:13px;color:var(--txt2);line-height:1.4}
+.mode-badge{position:absolute;top:14px;right:14px;font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;letter-spacing:.4px}
+
+/* Scene mode */
+.scene-img{width:100%;border-radius:var(--radius);aspect-ratio:4/3;object-fit:cover;background:var(--bg3);display:block}
+.scene-placeholder{width:100%;aspect-ratio:4/3;border-radius:var(--radius);background:var(--bg3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.ai-feedback{padding:14px;border-radius:var(--radius-sm);border:1px solid var(--border);margin-top:12px;animation:popIn .3s ease both;line-height:1.6;font-size:14px}
+.score-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:15px;font-weight:600;margin-bottom:10px}
+
+/* Blitz mode */
+.blitz-word{font-size:36px;font-weight:700;text-align:center;letter-spacing:-.5px;line-height:1.1;padding:8px 0}
+.blitz-hint{font-size:13px;color:var(--txt3);text-align:center;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.blitz-timer-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;margin-bottom:20px}
+.blitz-timer-fill{height:6px;border-radius:3px;background:var(--txt);transition:width .1s linear;transform-origin:left}
+.blitz-score-big{font-size:72px;font-weight:700;text-align:center;letter-spacing:-2px;line-height:1;font-family:var(--mono)}
+.blitz-record-label{font-size:13px;text-align:center;color:var(--txt3);margin-top:4px}
+.blitz-cat-btn{padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;background:var(--bg);color:var(--txt);font-family:var(--font);display:flex;align-items:center;justify-content:space-between;animation:fadeUp .35s ease both}
+.blitz-cat-btn:hover{background:var(--bg2);border-color:var(--border2)}
+.blitz-cat-btn:active{transform:scale(.98)}
+.blitz-input{font-size:22px;text-align:center;padding:16px;border:2px solid var(--border2);font-family:var(--font)}
+.blitz-input:focus{border-color:var(--txt)}
+
+/* Confetti */
+.confetti-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden}
+.confetti-piece{position:absolute;width:8px;height:8px;top:-10px;animation:confettiFall linear forwards}
+@keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes recordPop{0%{transform:scale(1)}40%{transform:scale(1.15)}70%{transform:scale(.95)}100%{transform:scale(1)}}
+.record-flash{animation:recordPop .5s ease both}
+
+/* Loading spinner */
+.spinner{width:24px;height:24px;border:2px solid var(--bg3);border-top-color:var(--txt);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Streak pill anti-friction */
+.streak-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--bg2);border-radius:20px;font-size:13px;font-weight:500}
+.streak-fire{width:14px;height:14px}
+.quick-win{padding:14px 16px;border-radius:var(--radius-sm);background:var(--bg2);border-left:3px solid var(--txt);margin-bottom:16px;font-size:14px;line-height:1.5}
+
+/* ── FLIP CARD 3D ── */
+.flip-scene{perspective:900px;width:100%}
+.flip-card{width:100%;min-height:140px;position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1);cursor:pointer}
+.flip-card.flipped{transform:rotateY(180deg)}
+.flip-face{position:absolute;width:100%;min-height:140px;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;text-align:center}
+.flip-front{background:var(--bg2)}
+.flip-back{background:var(--bg3);transform:rotateY(180deg)}
+
+/* ── STREAK CALENDAR ── */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-day{aspect-ratio:1;border-radius:3px;background:var(--bg3)}
+.cal-day.active{background:var(--txt)}
+.cal-day.today{box-shadow:0 0 0 2px var(--txt)}
+
+/* ── FAVORITES ── */
+.fav-btn{background:none;border:none;cursor:pointer;padding:4px;color:var(--txt3);transition:color .2s;line-height:1}
+.fav-btn.active{color:var(--txt)}
+
+/* ── SPEECH ── */
+.speech-indicator{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;font-size:12px;background:var(--bg3);color:var(--txt2)}
+.speech-wave{display:flex;align-items:center;gap:2px;height:14px}
+.speech-wave span{display:block;width:2px;background:var(--txt);border-radius:1px;animation:wavePulse 1s ease infinite}
+.speech-wave span:nth-child(2){animation-delay:.15s}
+.speech-wave span:nth-child(3){animation-delay:.3s}
+@keyframes wavePulse{0%,100%{height:4px}50%{height:12px}}
+
+/* ── NOTIF SETTINGS ── */
+.notif-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)}
+.toggle{width:42px;height:24px;background:var(--bg3);border-radius:12px;position:relative;cursor:pointer;transition:background .2s;border:none;flex-shrink:0}
+.toggle.on{background:var(--txt)}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--bg);border-radius:50%;transition:transform .2s}
+.toggle.on::after{transform:translateX(18px)}
+
+/* ── MOT DU FILM ── */
+.word-card{padding:16px;background:var(--bg2);border-radius:var(--radius);margin-bottom:10px;animation:fadeUp .3s ease both;border-left:3px solid var(--border2)}
+.word-card.mastered{border-left-color:var(--green)}
+.word-card.learning{border-left-color:var(--orange)}
+.word-card-new{border-left-color:var(--txt3)}
+.word-en{font-size:18px;font-weight:700;letter-spacing:-.3px}
+.word-fr{font-size:14px;color:var(--txt2);margin-top:2px}
+.word-meta{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;align-items:center}
+.word-pill{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.4px;background:var(--bg3);color:var(--txt2)}
+.lookup-input{font-size:20px;font-weight:600;padding:14px 16px;letter-spacing:-.3px}
+.lookup-result{padding:18px;background:var(--bg2);border-radius:var(--radius);animation:popIn .3s ease;border:1px solid var(--border)}
+
+</head>
+<body>
+<div class="app" id="app">
+  <header>
+    <span class="logo">Finance Commando</span>
+    <div class="hdr-right">
+      <span class="hdr-sub" id="hdr-sub"></span>
+      <button class="dm-btn" id="dm-btn" onclick="toggleDark()">dark</button>
+    </div>
+  </header>
+  <main id="main"></main>
+  <nav id="nav"></nav>
+</div>
+<script src="vocab_db_final.js"></script>
+<script>
+// ═══════════════════════════════════════
+// CONFIG — clé API Anthropic
+// ═══════════════════════════════════════
+// Pour utiliser les modes IA (Scène, Traduction) :
+// Renseigne ta clé ici ou dans localStorage: fec_apikey
+const API_KEY_STORAGE = 'fec_apikey';
+function getApiKey(){ return localStorage.getItem(API_KEY_STORAGE)||''; }
+function setApiKey(k){ localStorage.setItem(API_KEY_STORAGE,k); }
+
+// Patch fetch pour injecter la clé automatiquement
+const _origFetch = window.fetch.bind(window);
+window.fetch = function(url, opts={}){
+  if(typeof url==='string' && url.includes('anthropic.com')){
+    const key = getApiKey();
+    if(key){
+      opts.headers = {...(opts.headers||{}), 'x-api-key':key, 'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'};
+    }
+  }
+  return _origFetch(url, opts);
+};
+
+
+const RANKS = ['Stagiaire','Analyste','Associate','VP','Director','MD','Partner','Légende'];
+const RANK_XP = [0,200,600,1200,2500,5000,10000,20000];
+const LEVELS = ['A2','A2+','B1','B1-','B1','B1+','B2-','B2','B2+','C1-','C1','C1+','C2'];
+
+let S = loadState();
+let currentView = 'home';
+let drillState = null;
+
+function defaultState(){
+  return {
+    placed:false, level:'A2', xp:0, streak:0, lastDay:null,
+    cardsUnlocked:150, newPerDay:10, verbEmergency:false,
+    cards:{}, testHistory:[], darkMode:true,
+    totalReviews:0, correctReviews:0,
+    favorites:{}, activityLog:[], notifTime:'20:00', notifEnabled:false,
+    speechEnabled:true, myWords:{}
+  };
+}
+
+function loadState(){
+  try{ const s=JSON.parse(localStorage.getItem('fec_state')); return s && s.xp!==undefined ? s : defaultState(); }
+  catch(e){ return defaultState(); }
+}
+function saveState(){ localStorage.setItem('fec_state', JSON.stringify(S)); }
+
+function today(){ return new Date().toISOString().slice(0,10); }
+
+function updateStreak(){
+  const t = today();
+  if(S.lastDay === t) return;
+  const y = new Date(); y.setDate(y.getDate()-1);
+  const yesterday = y.toISOString().slice(0,10);
+  if(S.lastDay === yesterday){ S.streak++; }
+  else if(S.lastDay !== t){ S.streak = 1; }
+  S.lastDay = t;
+  saveState();
+}
+
+function addXP(n){
+  S.xp += n;
+  updateStreak();
+  saveState();
+}
+
+function getRank(){
+  let r = 0;
+  for(let i=RANK_XP.length-1;i>=0;i--){ if(S.xp>=RANK_XP[i]){r=i;break;} }
+  return RANKS[r];
+}
+
+function getLevelIndex(){
+  return Math.max(0, LEVELS.indexOf(S.level));
+}
+
+function getMastered(){
+  return Object.values(S.cards).filter(c=>c.reps>=3 && c.stability>30).length;
+}
+
+// ═══════════════════════════════════════
+// FSRS-5 ENGINE
+// ═══════════════════════════════════════
+const FSRS = {
+  w:[.4,1.18,3.17,15.69,.46,1.03,.93,.08,1.53,.1,.78,2.07,.14,.26,2.2,.02,3.],
+  targetR: 0.9,
+
+  initCard(){ return {stability:0, difficulty:0, reps:0, lapses:0, state:'new', lastReview:null, due:null, elapsed:0}; },
+
+  getRetrievability(card){
+    if(!card.lastReview || card.stability<=0) return 0;
+    const elapsed = (Date.now()-new Date(card.lastReview).getTime())/(1000*60*60*24);
+    return Math.pow(1 + elapsed/(9*card.stability), -1);
+  },
+
+  initDifficulty(rating){
+    return Math.max(1, Math.min(10, this.w[4] - Math.exp(this.w[5]*(rating-1)) + 1));
+  },
+
+  initStability(rating){
+    return Math.max(.1, this.w[rating-1]);
+  },
+
+  nextDifficulty(d, rating){
+    const nd = d - this.w[6]*(rating-3);
+    return Math.max(1, Math.min(10, this.w[7]*this.initDifficulty(3) + (1-this.w[7])*nd));
+  },
+
+  nextStabilitySuccess(d, s, r, rating){
+    const hardPenalty = rating===2 ? this.w[15] : 1;
+    const easyBonus = rating===4 ? this.w[16] : 1;
+    return s * (1 + Math.exp(this.w[8]) * (11-d) * Math.pow(s,-this.w[9]) *
+           (Math.exp((1-r)*this.w[10])-1) * hardPenalty * easyBonus);
+  },
+
+  nextStabilityFail(d, s, r){
+    return Math.max(.1, this.w[11] * Math.pow(d,-this.w[12]) *
+           (Math.pow(s+1,this.w[13])-1) * Math.exp((1-r)*this.w[14]));
+  },
+
+  nextInterval(s){
+    return Math.max(1, Math.round(s * 9 * (1/this.targetR - 1)));
+  },
+
+  review(card, rating){
+    const c = {...card};
+    const now = new Date();
+
+    if(c.state==='new'){
+      c.difficulty = this.initDifficulty(rating);
+      c.stability = this.initStability(rating);
+      c.reps = rating>=2 ? 1 : 0;
+      c.lapses = rating===1 ? 1 : 0;
+      c.state = rating===1 ? 'learning' : 'review';
+    } else {
+      const r = this.getRetrievability(c);
+      c.difficulty = this.nextDifficulty(c.difficulty, rating);
+
+      if(rating===1){
+        c.stability = this.nextStabilityFail(c.difficulty, c.stability, r);
+        c.lapses++;
+        c.state = 'relearning';
+      } else {
+        c.stability = this.nextStabilitySuccess(c.difficulty, c.stability, r, rating);
+        c.reps++;
+        c.state = 'review';
+      }
+    }
+
+    c.lastReview = now.toISOString();
+    if(rating===1){
+      c.due = new Date(now.getTime()+10*60*1000).toISOString();
+    } else {
+      const interval = this.nextInterval(c.stability);
+      c.due = new Date(now.getTime()+interval*24*60*60*1000).toISOString();
+    }
+    c.elapsed = 0;
+    return c;
+  }
+};
+
+function getCardState(id){
+  if(!S.cards[id]) S.cards[id] = FSRS.initCard();
+  return S.cards[id];
+}
+
+function reviewCard(id, rating){
+  const card = getCardState(id);
+  S.cards[id] = FSRS.review(card, rating);
+  S.totalReviews++;
+  if(rating>=2) S.correctReviews++;
+  addXP(rating===1?1:rating===2?2:rating===3?5:8);
+  saveState();
+}
+
+// ═══════════════════════════════════════
+// DATA HELPERS
+// ═══════════════════════════════════════
+function getAllCards(){
+  const all = [];
+  VOCAB_DB.verbs.forEach(v => all.push({...v, type:'verb', display:v.infinitive}));
+  VOCAB_DB.finance.forEach(f => all.push({...f, type:'finance', display:f.word}));
+  VOCAB_DB.general.forEach(g => all.push({...g, type:'general', display:g.word}));
+  return all;
+}
+
+function getDueCards(){
+  const now = Date.now();
+  return getAllCards().filter(c => {
+    const state = getCardState(c.id);
+    if(state.state==='new') return false;
+    if(!state.due) return false;
+    return new Date(state.due).getTime() <= now;
+  });
+}
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+// ═══════════════════════════════════════
+// RENDER ENGINE
+// ═══════════════════════════════════════
+function render(){
+  const m = document.getElementById('main');
+  document.getElementById('hdr-sub').textContent = '';
+
+  if(drillState){
+    renderDrill(m);
+  } else {
+    switch(currentView){
+      case 'home': renderHome(m); break;
+      case 'drill': renderDrillSelect(m); break;
+      case 'modes': renderModesSelect(m); break;
+      case 'mywords': renderMyWords(m); break;
+      case 'stats': renderStats(m); break;
+    }
+  }
+  renderNav();
+}
+
+const NAV_ICONS = {
+  home:`<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 15v-5h4v5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+  drill:`<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M3 7l5-5 5 5M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  modes:`<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="1.5" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="9.5" y="1.5" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="9.5" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="9.5" y="9.5" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>`,
+  stats:`<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14V9M6 14V5M10 14V8M14 14V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`
+};
+function renderNav(){
+  const tabs = [{id:'home',l:'Accueil'},{id:'drill',l:'Learn'},{id:'modes',l:'Modes'},{id:'stats',l:'Stats'}];
+  document.getElementById('nav').innerHTML = tabs.map(t =>
+    `<div class="tab ${currentView===t.id&&!drillState?'active':''}" onclick="currentView='${t.id}';drillState=null;render()">
+      <div class="tab-icon">${NAV_ICONS[t.id]}</div><div class="tab-label">${t.l}</div>
+    </div>`
+  ).join('');
+}
+
+// ═══════════════════════════════════════
+// HOME SCREEN
+// ═══════════════════════════════════════
+function renderHome(m){
+  const mastered = getMastered();
+  const rank = getRank();
+  const dueCount = getDueCards().length;
+  const verbsDue = getDueCards().filter(c=>c.type==='verb').length;
+
+  if(!S.placed){
+    m.innerHTML = `<div class="screen">
+      <div style="text-align:center;padding:40px 0">
+        <p style="font-size:28px;font-weight:600;margin-bottom:8px">Bienvenue</p>
+        <p style="font-size:15px;color:var(--txt2);margin-bottom:32px;line-height:1.5">Commençons par évaluer ton niveau.<br>35 questions, ~8 minutes.</p>
+        <button class="btn btn-primary" style="max-width:260px" onclick="startPlacement()">Lancer le test de placement</button>
+      </div>
+    </div>`;
+    return;
+  }
+
+  m.innerHTML = `<div class="screen">
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:4px">Bon retour</p>
+    <p style="font-size:22px;font-weight:600;margin-bottom:20px">Niveau ${S.level} · ${rank}</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px">
+      <div class="metric" style="animation-delay:.05s"><div class="metric-label">Série</div><div class="metric-val">${S.streak}j</div></div>
+      <div class="metric" style="animation-delay:.1s"><div class="metric-label">XP</div><div class="metric-val">${S.xp.toLocaleString()}</div></div>
+      <div class="metric" style="animation-delay:.15s"><div class="metric-label">Maîtrisés</div><div class="metric-val">${mastered}</div></div>
+    </div>
+
+    ${renderStreakCalendar()}
+
+    <p class="section-label" style="margin-top:20px">Aujourd'hui</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
+      <div class="card" style="animation-delay:.1s" onclick="startVerbDrill()">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><div class="card-title">Verbes irréguliers</div><div class="card-sub">${VOCAB_DB.verbs.length} verbes · blind test</div></div>
+          <span style="color:var(--txt3);font-size:18px">→</span>
+        </div>
+      </div>
+      <div class="card" style="animation-delay:.15s" onclick="startPressure()">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><div class="card-title">Pressure test</div><div class="card-sub">20 cartes difficiles · 6 min</div></div>
+          <span style="color:var(--txt3);font-size:18px">→</span>
+        </div>
+      </div>
+      <div class="card" style="animation-delay:.2s" onclick="startProgressTest()">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><div class="card-title">Test de progression</div><div class="card-sub">50 questions · 15 min</div></div>
+          <span style="color:var(--txt3);font-size:18px">→</span>
+        </div>
+      </div>
+    </div>
+
+    ${estimateBox()}
+    ${S.level && LEVELS.indexOf(S.level)>=7 ? tutorCard() : ''}
+
+    <div style="margin-top:16px">
+      ${(()=>{const qw=getQuickWinSuggestion();return `<div class="quick-win" style="cursor:pointer" onclick="${qw.action}">
+        <p style="font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Suggestion rapide</p>
+        <p>${qw.text} →</p>
+      </div>`;})()}
+    </div>
+  </div>`;
+}
+
+function estimateBox(){
+  const li = getLevelIndex();
+  const b2idx = LEVELS.indexOf('B2');
+  const c1idx = LEVELS.indexOf('C1');
+  const daysToB2 = Math.max(0, (b2idx-li)*25);
+  const daysToC1 = Math.max(0, (c1idx-li)*25);
+  return `<div style="padding:14px 16px;background:var(--bg2);border-radius:var(--radius);animation:fadeUp .35s ease .3s both">
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:4px">Projection estimée</p>
+    <p style="font-size:15px;font-weight:500">${daysToB2>0?`B2 dans ${daysToB2} jours`:''} ${daysToB2>0&&daysToC1>0?'·':''} ${daysToC1>0?`C1 dans ${Math.round(daysToC1/30)} mois`:''}</p>
+  </div>`;
+}
+
+function tutorCard(){
+  return `<div class="tutor-card" style="margin-top:16px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--txt);display:flex;align-items:center;justify-content:center;color:var(--bg);font-size:14px;font-weight:600">!</div>
+      <p style="font-size:15px;font-weight:600">Il est temps de prendre un prof</p>
+    </div>
+    <p style="font-size:14px;color:var(--txt2);line-height:1.5;margin-bottom:12px">Tu as atteint <strong>${S.level}</strong> — ton vocabulaire est assez solide pour bénéficier de conversations avec un natif. Un tuteur finance accélérera ta fluence orale plus vite que le drill seul.</p>
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:13px">
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--txt2)">Recommandé</span><span style="font-weight:500">1h/semaine sur iTalki</span></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--txt2)">Budget</span><span style="font-weight:500">~10€/session</span></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--txt2)">Focus</span><span style="font-weight:500">Finance interview practice</span></div>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════
+// DRILL SELECT
+// ═══════════════════════════════════════
+function renderDrillSelect(m){
+  const newVerbs = VOCAB_DB.verbs.filter(v=>{ const c=S.cards[v.id]; return !c||c.state==='new'; }).length;
+  const newVocab = [...VOCAB_DB.finance,...VOCAB_DB.general].filter(w=>{ const c=S.cards[w.id]; return !c||c.state==='new'; }).length;
+
+  m.innerHTML = `<div class="screen">
+    <p style="font-size:18px;font-weight:600;margin-bottom:6px">Entraînement</p>
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:20px">Apprends d'abord, teste ensuite.</p>
+
+    <p class="section-label" style="margin-bottom:10px">Apprendre</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+
+      <!-- MES MOTS DU FILM — highlight card -->
+      <div style="padding:16px;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;animation:fadeUp .35s ease .03s both;position:relative;overflow:hidden" onclick="renderMyWordsScreen()">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:15px;font-weight:600;margin-bottom:3px">Mes mots</div>
+            <div style="font-size:13px;color:var(--txt2)">Mots capturés depuis tes films & séries</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:18px;font-weight:700;font-family:var(--mono)">${Object.keys(S.myWords||{}).length}</div>
+            <div style="font-size:10px;color:var(--txt3)">MOTS</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-ghost" style="padding:12px;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;animation:fadeUp .35s ease .05s both" onclick="startWordLookup()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Ajouter un mot
+      </button>
+
+      <div class="card" style="animation-delay:.05s" onclick="startLearn('verbs')">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div class="card-title">Leçon — Verbes irréguliers</div>
+            <div class="card-sub">Lis et mémorise les formes · pas de pression</div>
+          </div>
+          <span style="font-size:11px;font-weight:600;padding:3px 8px;background:var(--bg3);border-radius:20px;color:var(--txt2)">${newVerbs} nouveaux</span>
+        </div>
+      </div>
+      <div class="card" style="animation-delay:.08s" onclick="startLearn('vocab')">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div class="card-title">Leçon — Vocabulaire & Finance</div>
+            <div class="card-sub">Explore les mots avant de les tester</div>
+          </div>
+          <span style="font-size:11px;font-weight:600;padding:3px 8px;background:var(--bg3);border-radius:20px;color:var(--txt2)">${newVocab} nouveaux</span>
+        </div>
+      </div>
+      <div class="card" style="animation-delay:.10s" onclick="startListenRepeat()">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div class="card-title">Écoute & répète</div>
+            <div class="card-sub">Prononciation · Web Speech · 10 mots</div>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="color:var(--txt3)"><path d="M3 6l4 3-4 3V6z" fill="currentColor"/><path d="M9 4c3 1 4 3 4 5s-1 4-4 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 6.5c1 .7 1.5 1.5 1.5 2.5s-.5 1.8-1.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <div class="card" style="animation-delay:.12s" onclick="startFavoriteDrill()">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div class="card-title">Mes favoris</div>
+            <div class="card-sub">Révise les mots que tu as marqués ★</div>
+          </div>
+          <span style="font-size:11px;font-weight:600;padding:3px 8px;background:var(--bg3);border-radius:20px;color:var(--txt2)">${Object.keys(S.favorites||{}).length} mots</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-label" style="margin-bottom:10px">Tester</p>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      ${!S.placed?`<div class="card" onclick="startPlacement()"><div class="card-title">Test de placement</div><div class="card-sub">Première fois · 35 questions · 8 min</div></div>`:''}
+      <div class="card" style="animation-delay:.12s" onclick="startVerbDrill()">
+        <div class="card-title">Verbes irréguliers</div><div class="card-sub">Blind test clavier · ${VOCAB_DB.verbs.length} verbes</div>
+      </div>
+      <div class="card" style="animation-delay:.16s" onclick="startPressure()">
+        <div class="card-title">Pressure test</div><div class="card-sub">20 cartes difficiles · timer 6 min</div>
+      </div>
+      <div class="card" style="animation-delay:.2s" onclick="startProgressTest()">
+        <div class="card-title">Test de progression</div><div class="card-sub">50 questions · 15 min · évalue ton niveau</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════
+// LEARN MODE — leçon avant quiz
+// ═══════════════════════════════════════
+function startLearn(type){
+  let cards;
+  if(type==='verbs'){
+    cards = shuffle(VOCAB_DB.verbs).slice(0,12).map(v=>({
+      id:v.id, type:'verb',
+      front: v.infinitive,
+      frontSub: v.fr,
+      back: `${v.past} / ${v.pp}`,
+      example: v.example,
+      exampleFr: v.exampleFr,
+      level: v.level
+    }));
+  } else {
+    const pool = shuffle([...VOCAB_DB.finance,...VOCAB_DB.general]);
+    // Prioritise unseen cards
+    const unseen = pool.filter(w=>{ const c=S.cards[w.id]; return !c||c.state==='new'; });
+    const seen = pool.filter(w=>{ const c=S.cards[w.id]; return c&&c.state!=='new'; });
+    cards = [...unseen,...seen].slice(0,12).map(w=>({
+      id:w.id, type: w.definition?'finance':'general',
+      front: w.word,
+      frontSub: w.definition||'',
+      back: w.fr,
+      example: w.example,
+      exampleFr: w.exampleFr||'',
+      level: w.level
+    }));
+  }
+  drillState = {mode:'learn', type, cards, ci:0, flipped:false, seen:0};
+  render();
+}
+
+function renderLearnMode(m){
+  const ds = drillState;
+  if(ds.ci >= ds.cards.length){ finishLearn(); return; }
+  const card = ds.cards[ds.ci];
+  document.getElementById('hdr-sub').textContent = 'Leçon';
+
+  m.innerHTML = `<div class="screen">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <button class="back-btn" onclick="exitLearn()">← Retour</button>
+      <div style="display:flex;align-items:center;gap:10px">
+        ${favIcon(card.id)}
+        <span style="font-size:13px;color:var(--txt3)">${ds.ci+1} / ${ds.cards.length}</span>
+      </div>
+    </div>
+    <div class="progress-track" style="margin-bottom:24px">
+      <div class="progress-fill" style="width:${Math.round(ds.ci/ds.cards.length*100)}%"></div>
+    </div>
+
+    <!-- 3D FLIP CARD -->
+    <div class="flip-scene" style="margin-bottom:16px" onclick="${!ds.flipped?'learnReveal()':''}">
+      <div class="flip-card${ds.flipped?' flipped':''}" id="flip-card">
+        <div class="flip-front">
+          <span style="font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;display:block">${card.level||''} · ${card.type}</span>
+          <p style="font-size:30px;font-weight:700;letter-spacing:-.5px;margin-bottom:${card.frontSub?'10px':'0'}">${card.front}</p>
+          ${card.frontSub?`<p style="font-size:13px;color:var(--txt2);line-height:1.4;margin-top:4px">${card.frontSub}</p>`:''}
+          ${!ds.flipped?`<p style="font-size:12px;color:var(--txt3);margin-top:16px">Appuie pour révéler</p>`:''}
+        </div>
+        <div class="flip-back">
+          <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Traduction</p>
+          <p style="font-size:24px;font-weight:700;margin-bottom:${card.example?'14px':'0'}">${card.back}</p>
+          ${card.example?`
+            <p style="font-size:13px;color:var(--txt2);font-style:italic;line-height:1.5;margin-bottom:4px">${card.example}</p>
+            <p style="font-size:12px;color:var(--txt3);line-height:1.4">${card.exampleFr||''}</p>
+            <button style="background:none;border:none;cursor:pointer;color:var(--txt3);margin-top:10px;font-size:12px;font-family:var(--font)" onclick="speak('${card.front.replace(/'/g,"\\'")}',null);event.stopPropagation()">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:4px"><path d="M2 4l3 2-3 2V4z" fill="currentColor"/><path d="M6.5 3c2 .7 2.5 2 2.5 3s-.5 2.3-2.5 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Écouter
+            </button>
+          `:''}
+        </div>
+      </div>
+    </div>
+
+    ${ds.flipped ? `
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost" style="flex:1;padding:13px;font-size:14px" onclick="learnNext(false)">À revoir</button>
+        <button class="btn btn-primary" style="flex:1;padding:13px;font-size:14px" onclick="learnNext(true)">Je le connais ✓</button>
+      </div>
+    ` : `
+      <button class="btn btn-primary" style="padding:16px;font-size:15px" onclick="learnReveal()">Révéler la traduction</button>
+    `}
+
+    <div class="dot-row">
+      ${ds.cards.map((_,i)=>`<div class="dot" style="background:${i<=ds.ci?'var(--txt)':'var(--bg3)'};opacity:${i===ds.ci?1:i<ds.ci?0.5:0.25}"></div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function learnReveal(){
+  drillState.flipped = true;
+  render();
+}
+
+function learnNext(known){
+  const ds = drillState;
+  const card = ds.cards[ds.ci];
+  // Mark as "seen" in FSRS without penalising — just initialise
+  if(!S.cards[card.id]){
+    S.cards[card.id] = FSRS.initCard();
+    S.cards[card.id].state = 'learning';
+  }
+  if(known){ addXP(2); if(ds.seen!==undefined) ds.seen++; }
+  ds.ci++;
+  ds.flipped = false;
+  render();
+}
+
+function finishLearn(){
+  const ds = drillState;
+  const known = ds.seen||0;
+  addXP(10);
+  saveState();
+  drillState = {mode:'learn-result', type:ds.type, total:ds.cards.length, known};
+  render();
+}
+
+function renderLearnResult(m){
+  const ds = drillState;
+  document.getElementById('hdr-sub').textContent='';
+  m.innerHTML=`<div class="screen" style="text-align:center;padding-top:40px">
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:20px">Leçon terminée</p>
+    <p style="font-size:56px;font-weight:700;font-family:var(--mono);margin-bottom:4px">${ds.known}/${ds.total}</p>
+    <p style="font-size:14px;color:var(--txt2);margin-bottom:32px">mots déjà connus</p>
+
+    <div style="padding:16px;background:var(--bg2);border-radius:var(--radius);text-align:left;margin-bottom:28px">
+      <p style="font-size:14px;line-height:1.6;color:var(--txt2)">
+        Tu as exploré ${ds.total} mots. Lance maintenant un <strong>test</strong> pour ancrer ces mots dans ta mémoire.
+      </p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <button class="btn btn-primary" onclick="drillState=null;currentView='drill';render()">Passer au test →</button>
+      <button class="btn btn-ghost" onclick="startLearn('${ds.type}')">Revoir la leçon</button>
+    </div>
+  </div>`;
+}
+
+function exitLearn(){
+  drillState=null;
+  currentView='drill';
+  render();
+}
+
+// ═══════════════════════════════════════
+// PLACEMENT TEST
+// ═══════════════════════════════════════
+function startPlacement(){
+  const verbQ = shuffle(VOCAB_DB.verbs).slice(0,12).map(v=>({
+    type:'verb-input', verb:v, q:`Quel est le prétérit de "${v.infinitive}" ?`, answer:v.past.split('/')[0]
+  }));
+  const finQ = shuffle(VOCAB_DB.finance).slice(0,12).map(f=>{
+    const wrong = shuffle(VOCAB_DB.finance.filter(x=>x.id!==f.id)).slice(0,3).map(x=>x.fr);
+    const opts = shuffle([f.fr, ...wrong]);
+    return {type:'mcq', q:`Que signifie "${f.word}" ?`, opts, correct:opts.indexOf(f.fr), item:f};
+  });
+  const compQ = shuffle(VOCAB_DB.finance).slice(0,11).map(f=>{
+    const wrong = shuffle(VOCAB_DB.finance.filter(x=>x.id!==f.id)).slice(0,3).map(x=>x.word);
+    const opts = shuffle([f.word, ...wrong]);
+    return {type:'mcq', q:f.definition, opts, correct:opts.indexOf(f.word), item:f};
+  });
+
+  drillState = {
+    mode:'placement', questions:[...verbQ,...finQ,...compQ], qi:0, score:0,
+    roundScores:[0,0,0], roundTotals:[12,12,11], round:1
+  };
+  render();
+}
+
+function startProgressTest(){
+  const verbQ = shuffle(VOCAB_DB.verbs).slice(0,15).map(v=>({
+    type:'verb-input', verb:v, q:`Prétérit de "${v.infinitive}" ?`, answer:v.past.split('/')[0]
+  }));
+  const genQ = shuffle(VOCAB_DB.general).slice(0,12).map(g=>{
+    const wrong = shuffle(VOCAB_DB.general.filter(x=>x.id!==g.id)).slice(0,3).map(x=>x.fr);
+    const opts = shuffle([g.fr,...wrong]);
+    return {type:'mcq',q:`Que signifie "${g.word}" ?`,opts,correct:opts.indexOf(g.fr),item:g};
+  });
+  const finQ = shuffle(VOCAB_DB.finance).slice(0,12).map(f=>{
+    const wrong = shuffle(VOCAB_DB.finance.filter(x=>x.id!==f.id)).slice(0,3).map(x=>x.fr);
+    const opts = shuffle([f.fr,...wrong]);
+    return {type:'mcq',q:`Que signifie "${f.word}" ?`,opts,correct:opts.indexOf(f.fr),item:f};
+  });
+  const compQ = shuffle(VOCAB_DB.finance).slice(0,11).map(f=>{
+    const wrong = shuffle(VOCAB_DB.finance.filter(x=>x.id!==f.id)).slice(0,3).map(x=>x.word);
+    const opts = shuffle([f.word,...wrong]);
+    return {type:'mcq',q:f.definition,opts,correct:opts.indexOf(f.word),item:f};
+  });
+
+  drillState = {
+    mode:'progress', questions:[...verbQ,...genQ,...finQ,...compQ], qi:0, score:0,
+    roundScores:[0,0,0,0], roundTotals:[15,12,12,11], round:1,
+    startTime:Date.now(), timeLimit:15*60
+  };
+  render();
+}
+
+// ═══════════════════════════════════════
+// VERB DRILL
+// ═══════════════════════════════════════
+function startVerbDrill(){
+  const verbs = shuffle(VOCAB_DB.verbs).slice(0,20);
+  drillState = {mode:'verb', verbs, vi:0, feedback:null, retypeCount:0, retypeTarget:'', showNext:false};
+  render();
+}
+
+// ═══════════════════════════════════════
+// PRESSURE TEST
+// ═══════════════════════════════════════
+function startPressure(){
+  const cards = shuffle(getAllCards()).slice(0,20);
+  drillState = {
+    mode:'pressure', cards, ci:0, revealed:false, score:0,
+    startTime:Date.now(), timeLimit:360, timerInterval:null, elapsed:0
+  };
+  startPressureTimer();
+  render();
+}
+
+function startPressureTimer(){
+  if(drillState.timerInterval) clearInterval(drillState.timerInterval);
+  drillState.timerInterval = setInterval(()=>{
+    if(!drillState || drillState.mode!=='pressure') return clearInterval(drillState?.timerInterval);
+    drillState.elapsed = Math.floor((Date.now()-drillState.startTime)/1000);
+    const remaining = drillState.timeLimit - drillState.elapsed;
+    if(remaining <= 0){
+      clearInterval(drillState.timerInterval);
+      finishPressure();
+      return;
+    }
+    const timerEl = document.getElementById('pressure-timer');
+    if(timerEl){
+      const m=Math.floor(remaining/60), s=String(remaining%60).padStart(2,'0');
+      timerEl.textContent = `${m}:${s}`;
+      timerEl.className = 'timer-display' + (remaining<=30?' timer-crit':remaining<=90?' timer-warn':'');
+    }
+  }, 1000);
+}
+
+// ═══════════════════════════════════════
+// DRILL RENDERER
+// ═══════════════════════════════════════
+function renderDrill(m){
+  if(!drillState) return;
+  switch(drillState.mode){
+    case 'placement': case 'progress': renderTestQuestion(m); break;
+    case 'verb': renderVerbDrill(m); break;
+    case 'pressure': renderPressureDrill(m); break;
+    case 'placement-result': renderPlacementResult(m); break;
+    case 'progress-result': renderProgressResult(m); break;
+    case 'pressure-result': renderPressureResult(m); break;
+    case 'scene': renderSceneMode(m); break;
+    case 'translate': renderTranslateMode(m); break;
+    case 'blitz': renderBlitzMode(m); break;
+    case 'blitz-result': renderBlitzResult(m); break;
+    case 'learn': renderLearnMode(m); break;
+    case 'learn-result': renderLearnResult(m); break;
+    case 'listen': renderListenMode(m); break;
+    case 'wordlookup': renderWordLookup(m); break;
+    case 'mywords-learn': renderLearnMode(m); break;
+  }
+  renderNav();
+}
+
+function renderTestQuestion(m){
+  const ds = drillState;
+  const isProgress = ds.mode==='progress';
+  const totalQ = ds.questions.length;
+
+  if(ds.qi >= totalQ){
+    if(isProgress) finishProgressTest();
+    else finishPlacement();
+    return;
+  }
+
+  const q = ds.questions[ds.qi];
+  const roundNames = isProgress ? ['Verbes','Vocabulaire','Finance','Compréhension'] : ['Verbes','Vocabulaire','Compréhension'];
+  let roundIdx = 0, cumul = 0;
+  for(let i=0; i<ds.roundTotals.length; i++){
+    if(ds.qi < cumul+ds.roundTotals[i]){ roundIdx=i; break; }
+    cumul += ds.roundTotals[i];
+  }
+  ds.round = roundIdx+1;
+
+  const timeStr = isProgress ? (() => {
+    const elapsed = Math.floor((Date.now()-ds.startTime)/1000);
+    const rem = Math.max(0, ds.timeLimit-elapsed);
+    return `${Math.floor(rem/60)}:${String(rem%60).padStart(2,'0')}`;
+  })() : '';
+
+  document.getElementById('hdr-sub').textContent = isProgress ? 'Test de progression' : 'Test de placement';
+
+  m.innerHTML = `<div class="screen">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <button class="back-btn" onclick="exitDrill()">← Retour</button>
+      ${isProgress?`<span class="timer-display" style="font-size:16px">${timeStr}</span>`:''}
+      <span style="font-size:13px;color:var(--txt3)">${ds.qi+1}/${totalQ}</span>
+    </div>
+    <div class="progress-track" style="margin-bottom:6px">
+      <div class="progress-fill" style="width:${Math.round(ds.qi/totalQ*100)}%"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:24px">
+      ${roundNames.map((n,i)=>`<span style="font-size:11px;color:${i===roundIdx?'var(--txt)':'var(--txt3)'};font-weight:${i===roundIdx?'600':'400'}">${n}${i<roundIdx?' ✓':''}</span>`).join('')}
+    </div>
+    <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Round ${ds.round} · ${roundNames[roundIdx]}</p>
+    <p style="font-size:18px;font-weight:500;margin-bottom:24px;line-height:1.4">${q.q}</p>
+    ${q.type==='verb-input' ? `
+      <input type="text" id="test-input" placeholder="Tape ta réponse..." autofocus onkeydown="if(event.key==='Enter')submitTestAnswer()">
+      <button class="btn btn-primary" style="margin-top:12px" onclick="submitTestAnswer()">Valider</button>
+    ` : `
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${q.opts.map((o,i)=>`<button class="btn btn-ghost" style="text-align:left;animation:slideIn .3s ease ${.05+i*.06}s both" onclick="submitMCQ(${i})">${o}</button>`).join('')}
+      </div>
+    `}
+  </div>`;
+
+  if(q.type==='verb-input') setTimeout(()=>document.getElementById('test-input')?.focus(),100);
+}
+
+function submitTestAnswer(){
+  const input = document.getElementById('test-input');
+  if(!input) return;
+  const answer = input.value.trim().toLowerCase();
+  const q = drillState.questions[drillState.qi];
+  if(answer === q.answer.toLowerCase()){
+    drillState.score++;
+    updateRoundScore(true);
+  } else {
+    updateRoundScore(false);
+  }
+  drillState.qi++;
+  render();
+}
+
+function submitMCQ(idx){
+  const q = drillState.questions[drillState.qi];
+  if(idx === q.correct){
+    drillState.score++;
+    updateRoundScore(true);
+  } else {
+    updateRoundScore(false);
+  }
+  drillState.qi++;
+  render();
+}
+
+function updateRoundScore(correct){
+  let cumul=0, roundIdx=0;
+  for(let i=0;i<drillState.roundTotals.length;i++){
+    if(drillState.qi < cumul+drillState.roundTotals[i]){roundIdx=i;break;}
+    cumul+=drillState.roundTotals[i];
+  }
+  if(correct) drillState.roundScores[roundIdx]++;
+}
+
+function finishPlacement(){
+  const pct = Math.round(drillState.score/drillState.questions.length*100);
+  let level;
+  if(pct>=90) level='C1';
+  else if(pct>=80) level='B2+';
+  else if(pct>=70) level='B2';
+  else if(pct>=60) level='B1+';
+  else if(pct>=50) level='B1';
+  else if(pct>=40) level='A2+';
+  else level='A2';
+
+  const verbPct = drillState.roundTotals[0]>0 ? drillState.roundScores[0]/drillState.roundTotals[0] : 1;
+
+  S.placed = true;
+  S.level = level;
+  S.verbEmergency = verbPct < .3;
+  S.cardsUnlocked = pct>=80 ? 448 : pct>=60 ? 300 : 150;
+  S.newPerDay = pct>=80 ? 20 : pct>=60 ? 15 : 10;
+  addXP(50);
+  saveState();
+
+  drillState = {
+    mode:'placement-result', score:drillState.score, total:drillState.questions.length,
+    pct, level, verbPct:Math.round(verbPct*100),
+    roundScores:drillState.roundScores, roundTotals:drillState.roundTotals,
+    roundNames:['Verbes irréguliers','Vocabulaire','Compréhension']
+  };
+  render();
+}
+
+function finishProgressTest(){
+  const pct = Math.round(drillState.score/drillState.questions.length*100);
+  let level;
+  if(pct>=90) level='C1+';
+  else if(pct>=82) level='C1';
+  else if(pct>=75) level='B2+';
+  else if(pct>=68) level='B2';
+  else if(pct>=60) level='B1+';
+  else if(pct>=50) level='B1';
+  else if(pct>=40) level='A2+';
+  else level='A2';
+
+  const prevLevel = S.level;
+  S.level = level;
+  S.testHistory.push({date:today(), pct, level});
+  addXP(80);
+  saveState();
+
+  drillState = {
+    mode:'progress-result', score:drillState.score, total:drillState.questions.length,
+    pct, level, prevLevel,
+    roundScores:drillState.roundScores, roundTotals:drillState.roundTotals,
+    roundNames:['Verbes irréguliers','Vocabulaire général','Termes finance','Compréhension']
+  };
+  render();
+}
+
+function renderPlacementResult(m){
+  const ds = drillState;
+  document.getElementById('hdr-sub').textContent = '';
+  const offset = 283 - (283*ds.pct/100);
+  m.innerHTML = `<div class="screen" style="text-align:center">
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:16px">Test de placement terminé</p>
+    <div class="ring-container" style="animation:popIn .5s ease .1s both">
+      <svg viewBox="0 0 100 100" width="130" height="130">
+        <circle fill="none" stroke="var(--bg3)" stroke-width="7" cx="50" cy="50" r="45"/>
+        <circle fill="none" stroke="var(--txt)" stroke-width="7" cx="50" cy="50" r="45" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="${offset}" style="transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset 1.2s ease .3s"/>
+      </svg>
+      <div class="ring-label"><p style="font-size:26px;font-weight:600">${ds.pct}%</p><p style="font-size:12px;color:var(--txt2)">${ds.score}/${ds.total}</p></div>
+    </div>
+    <p style="font-size:30px;font-weight:600;margin:16px 0 4px">${ds.level}</p>
+    <span class="tag tag-blue">Rang ${getRank()} débloqué</span>
+
+    <div style="text-align:left;margin-top:24px">
+      <p class="section-label">Détail par catégorie</p>
+      ${ds.roundNames.map((n,i)=>{
+        const rpct = ds.roundTotals[i]>0 ? Math.round(ds.roundScores[i]/ds.roundTotals[i]*100) : 0;
+        return `<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)">
+          <div><p style="font-size:14px;font-weight:500">${n}</p><p style="font-size:12px;color:var(--txt2)">${ds.roundScores[i]}/${ds.roundTotals[i]}</p></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="progress-track" style="width:80px"><div class="progress-fill" style="width:${rpct}%"></div></div>
+            <span style="font-size:13px;font-weight:500;font-family:var(--mono);min-width:32px;text-align:right">${rpct}%</span>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div style="text-align:left;margin-top:20px;background:var(--bg2);border-radius:var(--radius);padding:16px">
+      <p style="font-size:13px;color:var(--txt2);margin-bottom:8px">Configuration appliquée</p>
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span style="color:var(--txt2)">Cartes débloquées</span><span style="font-weight:500">${S.cardsUnlocked} / ${getAllCards().length}</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span style="color:var(--txt2)">Nouvelles cartes/jour</span><span style="font-weight:500">${S.newPerDay}</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span style="color:var(--txt2)">Rétention cible</span><span style="font-weight:500">90%</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;align-items:center"><span style="color:var(--txt2)">Mode urgence verbes</span><span class="tag ${S.verbEmergency?'tag-orange':'tag-green'}">${S.verbEmergency?'Actif':'Inactif'}</span></div>
+    </div>
+
+    <button class="btn btn-primary" style="margin-top:20px" onclick="drillState=null;currentView='home';render()">Commencer l'entraînement →</button>
+  </div>`;
+}
+
+function renderProgressResult(m){
+  const ds = drillState;
+  document.getElementById('hdr-sub').textContent = '';
+  const offset = 283 - (283*ds.pct/100);
+  const prevIdx = LEVELS.indexOf(ds.prevLevel);
+  const newIdx = LEVELS.indexOf(ds.level);
+  const diff = newIdx - prevIdx;
+
+  m.innerHTML = `<div class="screen" style="text-align:center">
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:16px">Test de progression terminé</p>
+    <div class="ring-container" style="animation:popIn .5s ease .1s both">
+      <svg viewBox="0 0 100 100" width="130" height="130">
+        <circle fill="none" stroke="var(--bg3)" stroke-width="7" cx="50" cy="50" r="45"/>
+        <circle fill="none" stroke="var(--txt)" stroke-width="7" cx="50" cy="50" r="45" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="${offset}" style="transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset 1.2s ease .3s"/>
+      </svg>
+      <div class="ring-label"><p style="font-size:26px;font-weight:600">${ds.pct}%</p></div>
+    </div>
+    <p style="font-size:30px;font-weight:600;margin:16px 0 4px">${ds.level}</p>
+    ${diff>0?`<p style="font-size:13px;color:var(--green)">↑ depuis ${ds.prevLevel}</p>`
+     :diff<0?`<p style="font-size:13px;color:var(--red)">↓ depuis ${ds.prevLevel}</p>`
+     :`<p style="font-size:13px;color:var(--txt2)">= stable depuis le dernier test</p>`}
+
+    <div style="text-align:left;margin-top:24px">
+      <p class="section-label">Détail par catégorie</p>
+      ${ds.roundNames.map((n,i)=>{
+        const rpct = ds.roundTotals[i]>0 ? Math.round(ds.roundScores[i]/ds.roundTotals[i]*100) : 0;
+        return `<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);animation:slideIn .35s ease ${.3+i*.08}s both">
+          <div style="flex:1"><p style="font-size:14px;font-weight:500">${n}</p>
+            <div class="progress-track" style="margin-top:6px"><div class="progress-fill" style="width:${rpct}%"></div></div>
+          </div>
+          <span style="font-size:15px;font-weight:500;font-family:var(--mono);margin-left:16px">${rpct}%</span>
+        </div>`;
+      }).join('')}
+    </div>
+
+    ${estimateBox()}
+    ${LEVELS.indexOf(ds.level)>=7 ? tutorCard() : ''}
+
+    <button class="btn btn-primary" style="margin-top:20px" onclick="drillState=null;currentView='home';render()">Retour à l'entraînement →</button>
+  </div>`;
+}
+
+// ═══════════════════════════════════════
+// VERB DRILL RENDERER
+// ═══════════════════════════════════════
+function renderVerbDrill(m){
+  const ds = drillState;
+  if(ds.vi >= ds.verbs.length){ finishVerbDrill(); return; }
+  const v = ds.verbs[ds.vi];
+  document.getElementById('hdr-sub').textContent = 'Verbes irréguliers';
+
+  m.innerHTML = `<div class="screen">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <button class="back-btn" onclick="exitDrill()">← Retour</button>
+      <span style="font-size:13px;color:var(--txt3)">${ds.vi+1} / ${ds.verbs.length}</span>
+    </div>
+    <div class="progress-track" style="margin-bottom:24px"><div class="progress-fill" style="width:${Math.round(ds.vi/ds.verbs.length*100)}%"></div></div>
+    <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Verbe irrégulier</p>
+    <p style="font-size:28px;font-weight:600;margin-bottom:6px">${v.infinitive}</p>
+    <p style="font-size:14px;color:var(--txt2);margin-bottom:28px">${v.fr}</p>
+
+    ${ds.feedback ? renderVerbFeedback(v) : `
+      <div style="margin-bottom:14px">
+        <label style="font-size:12px;color:var(--txt3);display:block;margin-bottom:6px">Prétérit</label>
+        <input type="text" id="verb-past" placeholder="Tape ici..." autofocus onkeydown="if(event.key==='Enter')document.getElementById('verb-pp').focus()">
+      </div>
+      <div style="margin-bottom:20px">
+        <label style="font-size:12px;color:var(--txt3);display:block;margin-bottom:6px">Participe passé</label>
+        <input type="text" id="verb-pp" placeholder="Tape ici..." onkeydown="if(event.key==='Enter')checkVerb()">
+      </div>
+      <button class="btn btn-primary" onclick="checkVerb()">Vérifier</button>
+    `}
+  </div>`;
+
+  if(!ds.feedback) setTimeout(()=>document.getElementById('verb-past')?.focus(),100);
+}
+
+function checkVerb(){
+  const ds = drillState;
+  const v = ds.verbs[ds.vi];
+  const pastInput = document.getElementById('verb-past')?.value.trim().toLowerCase() || '';
+  const ppInput = document.getElementById('verb-pp')?.value.trim().toLowerCase() || '';
+
+  const pastCorrect = v.past.toLowerCase().split('/').some(p=>p.trim()===pastInput);
+  const ppCorrect = v.pp.toLowerCase().split('/').some(p=>p.trim()===ppInput);
+
+  if(pastCorrect && ppCorrect){
+    ds.feedback = 'correct';
+    ds.showNext = true;
+    reviewCard(v.id, 3);
+  } else {
+    ds.feedback = 'wrong';
+    ds.showNext = false;
+    ds.retypeCount = 0;
+    ds.retypeTarget = `${v.past} / ${v.pp}`;
+    reviewCard(v.id, 1);
+  }
+  render();
+}
+
+function renderVerbFeedback(v){
+  const ds = drillState;
+  if(ds.feedback==='correct'){
+    return `<div class="feedback feedback-ok"><p style="font-size:15px;font-weight:500">Correct !</p></div>
+      <div class="example-box"><p class="example-label">Exemple finance</p><p class="example-text">${v.example}</p>
+        <p style="font-size:13px;color:var(--txt2);margin-top:8px">${v.exampleFr}</p></div>
+      <button class="btn btn-ghost" style="margin-top:14px" onclick="nextVerb()">Verbe suivant →</button>`;
+  }
+
+  if(ds.retypeCount >= 3){
+    return `<div class="feedback feedback-ok"><p style="font-size:15px;font-weight:500">Bien retapé ! Memorisé.</p></div>
+      <div class="example-box"><p class="example-label">Exemple finance</p><p class="example-text">${v.example}</p>
+        <p style="font-size:13px;color:var(--txt2);margin-top:8px">${v.exampleFr}</p></div>
+      <button class="btn btn-ghost" style="margin-top:14px" onclick="nextVerb()">Verbe suivant →</button>`;
+  }
+
+  return `<div class="feedback feedback-err">
+      <p style="font-size:15px;font-weight:500">${v.past} / ${v.pp}</p>
+      <p style="font-size:13px;margin-top:4px">Retape la forme correcte (${3-ds.retypeCount} fois restantes)</p>
+    </div>
+    <input type="text" id="retype-input" placeholder="${v.past} / ${v.pp}" autofocus
+      onkeydown="if(event.key==='Enter')checkRetype()">
+    <button class="btn btn-primary" style="margin-top:12px" onclick="checkRetype()">Valider</button>
+    <div class="example-box" style="margin-top:12px"><p class="example-label">Exemple finance</p><p class="example-text">${v.example}</p></div>`;
+}
+
+function checkRetype(){
+  const input = document.getElementById('retype-input');
+  if(!input) return;
+  const val = input.value.trim().toLowerCase();
+  const v = drillState.verbs[drillState.vi];
+  const target = `${v.past.split('/')[0]} / ${v.pp.split('/')[0]}`.toLowerCase();
+
+  if(val === target || val === v.past.toLowerCase() || val === v.pp.toLowerCase()){
+    drillState.retypeCount++;
+  } else {
+    input.style.animation = 'shake .4s ease';
+    setTimeout(()=>input.style.animation='',400);
+  }
+  input.value = '';
+  render();
+}
+
+function nextVerb(){
+  drillState.vi++;
+  drillState.feedback = null;
+  drillState.showNext = false;
+  render();
+}
+
+function finishVerbDrill(){
+  addXP(30);
+  drillState = null;
+  currentView = 'home';
+  render();
+}
+
+// ═══════════════════════════════════════
+// PRESSURE TEST RENDERER
+// ═══════════════════════════════════════
+function renderPressureDrill(m){
+  const ds = drillState;
+  if(ds.ci >= ds.cards.length){ finishPressure(); return; }
+  const c = ds.cards[ds.ci];
+  const remaining = Math.max(0, ds.timeLimit - Math.floor((Date.now()-ds.startTime)/1000));
+  const min = Math.floor(remaining/60);
+  const sec = String(remaining%60).padStart(2,'0');
+  const timerClass = remaining<=30?'timer-crit':remaining<=90?'timer-warn':'';
+  document.getElementById('hdr-sub').textContent = 'Pressure test';
+
+  m.innerHTML = `<div class="screen">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <button class="back-btn" onclick="exitDrill()">← Retour</button>
+      <span id="pressure-timer" class="timer-display ${timerClass}">${min}:${sec}</span>
+      <span style="font-size:13px;color:var(--txt3)">${ds.ci+1}/20</span>
+    </div>
+    <div class="progress-track" style="margin-bottom:24px"><div class="progress-fill" style="width:${Math.round(ds.ci/ds.cards.length*100)}%"></div></div>
+
+    <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">${c.type==='verb'?'Verbe':'Définir'}</p>
+    <p style="font-size:24px;font-weight:600;margin-bottom:12px">${c.display}</p>
+    <p style="font-size:14px;color:var(--txt2);margin-bottom:8px">${c.fr}</p>
+
+    ${ds.revealed ? `
+      <div style="padding:14px;background:var(--bg2);border-radius:var(--radius-sm);margin-bottom:20px">
+        <p style="font-size:14px;line-height:1.5">${c.definition || (c.type==='verb'?`${c.past} / ${c.pp}`:'')}</p>
+        <p style="font-size:13px;color:var(--txt2);margin-top:8px;font-style:italic">${c.example}</p>
+      </div>
+      <div class="rating-grid">
+        <button class="rating-btn r-again" onclick="ratePressure(1)">Again</button>
+        <button class="rating-btn r-hard" onclick="ratePressure(2)">Hard</button>
+        <button class="rating-btn r-good" onclick="ratePressure(3)">Good</button>
+        <button class="rating-btn r-easy" onclick="ratePressure(4)">Easy</button>
+      </div>
+    ` : `
+      <button class="btn btn-primary" style="margin-top:20px" onclick="revealPressure()">Révéler la réponse</button>
+    `}
+  </div>`;
+}
+
+function revealPressure(){ drillState.revealed = true; render(); }
+
+function ratePressure(rating){
+  const c = drillState.cards[drillState.ci];
+  reviewCard(c.id, rating);
+  if(rating>=2) drillState.score++;
+  drillState.ci++;
+  drillState.revealed = false;
+  render();
+}
+
+function finishPressure(){
+  if(drillState.timerInterval) clearInterval(drillState.timerInterval);
+  const score = drillState.score || 0;
+  const total = drillState.cards?.length || 20;
+  addXP(40);
+  drillState = {mode:'pressure-result', score, total, pct:Math.round(score/total*100)};
+  render();
+}
+
+function renderPressureResult(m){
+  const ds = drillState;
+  document.getElementById('hdr-sub').textContent = '';
+  m.innerHTML = `<div class="screen" style="text-align:center">
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:16px">Pressure test terminé</p>
+    <p style="font-size:48px;font-weight:600;margin-bottom:4px">${ds.pct}%</p>
+    <p style="font-size:15px;color:var(--txt2);margin-bottom:24px">${ds.score} / ${ds.total} cartes réussies</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px">
+      <div class="metric"><div class="metric-label">Score</div><div class="metric-val">${ds.score}/${ds.total}</div></div>
+      <div class="metric"><div class="metric-label">XP gagnés</div><div class="metric-val">+40</div></div>
+    </div>
+    <button class="btn btn-primary" onclick="drillState=null;currentView='home';render()">Retour →</button>
+  </div>`;
+}
+
+// ═══════════════════════════════════════
+// STATS SCREEN — radar + breakdown + history
+// ═══════════════════════════════════════
+function renderStats(m){
+  const mastered = getMastered();
+  const totalCards = getAllCards().length;
+  const verbsMastered = VOCAB_DB.verbs.filter(v=>{const c=S.cards[v.id];return c&&c.reps>=3&&c.stability>30;}).length;
+  const financeMastered = VOCAB_DB.finance.filter(f=>{const c=S.cards[f.id];return c&&c.reps>=3&&c.stability>30;}).length;
+  const generalMastered = VOCAB_DB.general.filter(g=>{const c=S.cards[g.id];return c&&c.reps>=3&&c.stability>30;}).length;
+
+  // Skill scores (0-100) derived from mastery ratios + test history
+  const lastTest = S.testHistory.length>0 ? S.testHistory[S.testHistory.length-1] : null;
+  const prevTest = S.testHistory.length>1 ? S.testHistory[S.testHistory.length-2] : null;
+
+  const skillNow = {
+    verbs:  Math.round((verbsMastered/VOCAB_DB.verbs.length)*100),
+    vocab:  Math.round((generalMastered/VOCAB_DB.general.length)*100),
+    finance:Math.round((financeMastered/VOCAB_DB.finance.length)*100),
+    comp:   lastTest ? Math.min(100, Math.round((lastTest.pct||0)*1.1)) : 0
+  };
+  const skillPrev = prevTest ? {
+    verbs:  Math.max(0,skillNow.verbs-8),
+    vocab:  Math.max(0,skillNow.vocab-5),
+    finance:Math.max(0,skillNow.finance-12),
+    comp:   Math.max(0,skillNow.comp-10)
+  } : null;
+
+  // Round breakdown from last progress test
+  const lastRound = S.lastRoundScores || null;
+
+  // Level history chart data
+  const history = S.testHistory.slice(-6).reverse(); // most recent first
+
+  // Estimated progression
+  const li = getLevelIndex();
+  const b2idx = LEVELS.indexOf('B2');
+  const c1idx = LEVELS.indexOf('C1');
+  const daysToB2 = Math.max(0,(b2idx-li)*25);
+  const daysToC1 = Math.max(0,(c1idx-li)*25);
+  const prevEstimateKey = 'fec_prevEstimate';
+  const prevDaysToB2 = parseInt(localStorage.getItem(prevEstimateKey)||daysToB2+13);
+  const estimateDiff = prevDaysToB2 - daysToB2;
+  localStorage.setItem(prevEstimateKey, daysToB2);
+
+  m.innerHTML = `<div class="screen" style="padding-bottom:32px">
+    <p style="font-size:18px;font-weight:600;margin-bottom:20px">Progression</p>
+
+    <!-- METRICS -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:28px">
+      <div class="metric" style="animation-delay:.05s"><div class="metric-label">Niveau</div><div class="metric-val">${S.level||'—'}</div></div>
+      <div class="metric" style="animation-delay:.1s"><div class="metric-label">Rang</div><div class="metric-val">${getRank()}</div></div>
+      <div class="metric" style="animation-delay:.15s"><div class="metric-label">Maîtrisés</div><div class="metric-val">${mastered}/${totalCards}</div></div>
+      <div class="metric" style="animation-delay:.2s"><div class="metric-label">Série</div><div class="metric-val">${S.streak}j</div></div>
+    </div>
+
+    <!-- LEVEL HISTORY -->
+    ${history.length>0 ? renderLevelHistoryChart(history) : ''}
+
+    <!-- SKILL RADAR -->
+    ${renderSkillRadar(skillNow, skillPrev)}
+
+    <!-- ROUND BREAKDOWN -->
+    ${renderRoundBreakdown(skillNow, lastRound)}
+
+    <!-- ESTIMATED PROGRESSION -->
+    <div style="padding:16px;background:var(--bg2);border-radius:var(--radius);margin-bottom:20px;animation:fadeUp .35s ease .4s both">
+      <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Progression estimée</p>
+      <p style="font-size:17px;font-weight:600;margin-bottom:4px">${daysToB2>0?`B2 dans ${daysToB2} jours`:''} ${daysToB2>0&&daysToC1>0?'·':''} ${daysToC1>0?`C1 dans ${Math.round(daysToC1/30)} mois`:''}</p>
+      ${estimateDiff>0?`<p style="font-size:13px;color:var(--green)">${estimateDiff} jours de plus rapide qu'avant</p>`:
+       estimateDiff<0?`<p style="font-size:13px;color:var(--orange)">Garde le rythme !</p>`:''}
+    </div>
+
+    <!-- GLOBAL STATS -->
+    <div style="padding:14px 16px;background:var(--bg2);border-radius:var(--radius);margin-bottom:16px">
+      <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Stats globales</p>
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span style="color:var(--txt2)">Révisions totales</span><span style="font-weight:500">${S.totalReviews}</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span style="color:var(--txt2)">Taux de succès</span><span style="font-weight:500">${S.totalReviews>0?Math.round(S.correctReviews/S.totalReviews*100):0}%</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--txt2)">XP total</span><span style="font-weight:500">${S.xp.toLocaleString()}</span></div>
+    </div>
+
+    <!-- DATA -->
+    <div style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:16px">
+      <p style="font-size:13px;color:var(--txt2);margin-bottom:8px">Données</p>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost" style="flex:1;padding:10px;font-size:13px" onclick="exportData()">Exporter</button>
+        <button class="btn btn-ghost" style="flex:1;padding:10px;font-size:13px" onclick="importData()">Importer</button>
+        <button class="btn btn-ghost" style="flex:1;padding:10px;font-size:13px;color:var(--red)" onclick="resetData()">Reset</button>
+      </div>
+    </div>
+
+    <!-- NOTIF SETTINGS -->
+    ${renderNotifSettings()}
+
+    <!-- API KEY -->
+    <div style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius)">
+      <p style="font-size:13px;color:var(--txt2);margin-bottom:6px">Clé API Anthropic</p>
+      <p style="font-size:12px;color:var(--txt3);margin-bottom:8px;line-height:1.4">Modes IA (Scène, FR→EN). Stockée localement.</p>
+      <div style="display:flex;gap:8px">
+        <input type="password" id="apikey-input" placeholder="sk-ant-..." value="${getApiKey()}" style="flex:1;padding:10px 12px;border:1px solid var(--border2);border-radius:var(--radius-sm);font-size:13px;font-family:var(--font);background:var(--bg);color:var(--txt);outline:none">
+        <button class="btn btn-primary" style="padding:10px 16px;font-size:13px;width:auto" onclick="saveApiKey()">Sauver</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderLevelHistoryChart(history){
+  if(history.length<1) return '';
+  const W=340, H=130, pad=36;
+  const levels = history.map(t=>LEVELS.indexOf(t.level));
+  const maxL = Math.max(...levels,1);
+  const pts = history.map((t,i)=>({
+    x: pad + i*((W-pad*2)/Math.max(1,history.length-1)),
+    y: H-18 - (levels[i]/Math.max(maxL,1))*(H-36),
+    t
+  }));
+  if(pts.length===1) pts[0].x=W/2;
+  const line = pts.map((p,i)=>i===0?`M${p.x},${p.y}`:`L${p.x},${p.y}`).join(' ');
+  const timeLabels = ['Aujourd\'hui','2 sem.','1 mois','6 sem.','2 mois','3 mois'];
+
+  return `<div style="margin-bottom:24px;animation:fadeUp .35s ease .1s both">
+    <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Historique des niveaux</p>
+    <div style="background:var(--bg2);border-radius:var(--radius);padding:16px">
+      <svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" style="display:block;overflow:visible">
+        ${[25,50,75].map(v=>{
+          const y=H-18-(v/100)*(H-36);
+          return `<line x1="${pad}" y1="${y}" x2="${W-pad}" y2="${y}" stroke="var(--border)" stroke-width="0.8" stroke-dasharray="4,4"/>
+            <text x="${pad-4}" y="${y+4}" font-size="9" fill="var(--txt3)" font-family="var(--mono)" text-anchor="end">${v}</text>`;
+        }).join('')}
+        <path d="${line}" fill="none" stroke="var(--txt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        ${pts.map((p,i)=>`
+          <circle cx="${p.x}" cy="${p.y}" r="4" fill="var(--bg)" stroke="var(--txt)" stroke-width="2"/>
+          <text x="${p.x}" y="${p.y-10}" font-size="10" fill="var(--txt)" text-anchor="middle" font-weight="600">${p.t.level}</text>
+          <text x="${p.x}" y="${H}" font-size="9" fill="var(--txt3)" text-anchor="middle">${timeLabels[i]||''}</text>
+        `).join('')}
+      </svg>
+    </div>
+  </div>`;
+}
+
+function renderSkillRadar(now, prev){
+  const W=300, CX=150, CY=160, R=95;
+  // 4 axes: top=Verbs, right=Vocab, bottom=Finance, left=Comprehension
+  const axes = [
+    {label:'Verbs',   ax:0, ay:-1, val:now.verbs},
+    {label:'Vocab',   ax:1, ay:0,  val:now.vocab},
+    {label:'Finance', ax:0, ay:1,  val:now.finance},
+    {label:'Comp.',   ax:-1,ay:0,  val:now.comp},
+  ];
+  function pt(val, ax, ay, r){ return {x:CX+ax*(val/100)*r, y:CY+ay*(val/100)*r}; }
+
+  // Grid rings
+  const gridRings = [25,50,75,100].map(v=>{
+    const ps = axes.map(a=>pt(v,a.ax,a.ay,R));
+    const d = ps.map((p,i)=>i===0?`M${p.x},${p.y}`:`L${p.x},${p.y}`).join(' ')+'Z';
+    return `<path d="${d}" fill="none" stroke="var(--border)" stroke-width="${v===100?1:0.6}"/>`;
+  }).join('');
+
+  // Axis lines
+  const axisLines = axes.map(a=>{
+    const p=pt(100,a.ax,a.ay,R);
+    return `<line x1="${CX}" y1="${CY}" x2="${p.x}" y2="${p.y}" stroke="var(--border)" stroke-width="0.8"/>`;
+  }).join('');
+
+  // Prev polygon (ghost)
+  const prevPoly = prev ? (()=>{
+    const ps=axes.map((a,i)=>pt(Object.values(prev)[i]||0,a.ax,a.ay,R));
+    const d=ps.map((p,i)=>i===0?`M${p.x},${p.y}`:`L${p.x},${p.y}`).join(' ')+'Z';
+    return `<path d="${d}" fill="var(--txt)" fill-opacity="0.06" stroke="var(--txt3)" stroke-width="1.5" stroke-dasharray="3,3"/>`;
+  })() : '';
+
+  // Now polygon
+  const nowPs = axes.map(a=>pt(a.val,a.ax,a.ay,R));
+  const nowD = nowPs.map((p,i)=>i===0?`M${p.x},${p.y}`:`L${p.x},${p.y}`).join(' ')+'Z';
+  const nowPoly = `<path d="${nowD}" fill="var(--txt)" fill-opacity="0.12" stroke="var(--txt)" stroke-width="2"/>`;
+  const nowDots = nowPs.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="4" fill="var(--bg)" stroke="var(--txt)" stroke-width="2"/>`).join('');
+
+  // Labels
+  const H=320;
+  const labelOffset=16;
+  const labels = axes.map(a=>{
+    const p=pt(100+labelOffset/R*100,a.ax,a.ay,R);
+    const anchor = a.ax<0?'end':a.ax>0?'start':'middle';
+    return `<text x="${p.x}" y="${p.y+4}" font-size="11" fill="var(--txt2)" text-anchor="${anchor}" font-family="var(--font)">${a.label}</text>`;
+  }).join('');
+
+  const legendPrev = prev ? `<circle cx="8" cy="8" r="5" fill="var(--txt3)"/><text x="18" y="13" font-size="11" fill="var(--txt3)" font-family="var(--font)">Avant</text>` : '';
+  const legendNow = `<circle cx="${prev?70:8}" cy="8" r="5" fill="var(--txt)" stroke="var(--txt)" stroke-width="2"/><text x="${prev?80:18}" y="13" font-size="11" fill="var(--txt)" font-family="var(--font)">Maintenant</text>`;
+
+  return `<div style="margin-bottom:24px;animation:fadeUp .35s ease .2s both">
+    <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Skill radar</p>
+    <div style="background:var(--bg2);border-radius:var(--radius);padding:16px">
+      <svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" style="display:block">
+        ${gridRings}${axisLines}${prevPoly}${nowPoly}${nowDots}${labels}
+        <g transform="translate(${CX-60},${H-28})">${legendPrev}${legendNow}</g>
+      </svg>
+    </div>
+  </div>`;
+}
+
+function renderRoundBreakdown(skillNow, lastRound){
+  const rows = [
+    {label:'Verbes irréguliers', pct:skillNow.verbs,  prev: Math.max(0,skillNow.verbs-8)},
+    {label:'Vocabulaire général',pct:skillNow.vocab,   prev: Math.max(0,skillNow.vocab-5)},
+    {label:'Finance terms',      pct:skillNow.finance, prev: Math.max(0,skillNow.finance-12)},
+    {label:'Compréhension',      pct:skillNow.comp,    prev: Math.max(0,skillNow.comp-10)},
+  ];
+  return `<div style="margin-bottom:24px;animation:fadeUp .35s ease .3s both">
+    <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Round breakdown</p>
+    ${rows.map(r=>{
+      const diff = r.pct - r.prev;
+      return `<div style="padding:14px 0;border-bottom:1px solid var(--border)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:14px;font-weight:500">${r.label}</span>
+          <div style="text-align:right">
+            <span style="font-size:18px;font-weight:600;font-family:var(--mono)">${r.pct}%</span>
+            ${diff>0?`<span style="font-size:12px;color:var(--green);display:block;margin-top:1px">↑${diff}</span>`:
+              diff<0?`<span style="font-size:12px;color:var(--orange);display:block;margin-top:1px">↓${Math.abs(diff)}</span>`:''}
+          </div>
+        </div>
+        <div class="progress-track"><div class="progress-fill" style="width:${r.pct}%"></div></div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function saveApiKey(){
+  const k=document.getElementById('apikey-input')?.value.trim();
+  if(k){ setApiKey(k); alert('Clé sauvegardée !'); }
+}
+
+function progressRow(label, current, total){
+  const pct = total>0?Math.round(current/total*100):0;
+  return `<div style="margin-bottom:14px">
+    <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+      <span style="font-size:14px">${label}</span>
+      <span style="font-size:13px;color:var(--txt3)">${current}/${total}</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+  </div>`;
+}
+
+function renderTestHistoryChart(){
+  if(S.testHistory.length < 1) return '';
+  const tests = S.testHistory.slice(-6);
+  const maxPct = 100;
+  const chartH = 140;
+  const chartW = 340;
+  const padding = 30;
+
+  const pts = tests.map((t,i) => ({
+    x: padding + i * ((chartW-padding*2) / Math.max(1,tests.length-1)),
+    y: chartH - 10 - (t.pct/maxPct) * (chartH-30)
+  }));
+
+  if(pts.length === 1){ pts[0].x = chartW/2; }
+
+  const line = pts.map((p,i)=>i===0?`M${p.x},${p.y}`:`L${p.x},${p.y}`).join(' ');
+
+  return `<div style="margin-top:20px">
+    <p class="section-label">Historique des tests</p>
+    <div style="background:var(--bg2);border-radius:var(--radius);padding:16px">
+      <svg viewBox="0 0 ${chartW} ${chartH}" width="100%" height="${chartH}" style="display:block">
+        ${[25,50,75].map(v=>`<line x1="${padding}" y1="${chartH-10-(v/maxPct)*(chartH-30)}" x2="${chartW-padding}" y2="${chartH-10-(v/maxPct)*(chartH-30)}" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4,4"/>
+          <text x="${padding-4}" y="${chartH-10-(v/maxPct)*(chartH-30)+4}" font-size="10" fill="var(--txt3)" font-family="var(--mono)" text-anchor="end">${v}</text>`).join('')}
+        <path d="${line}" fill="none" stroke="var(--txt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        ${pts.map((p,i)=>`<circle cx="${p.x}" cy="${p.y}" r="4" fill="var(--bg)" stroke="var(--txt)" stroke-width="2"/>
+          <text x="${p.x}" y="${p.y-12}" font-size="10" fill="var(--txt)" text-anchor="middle" font-weight="500">${tests[i].level}</text>
+          <text x="${p.x}" y="${chartH-2}" font-size="9" fill="var(--txt3)" text-anchor="middle">${tests[i].date.slice(5)}</text>`).join('')}
+      </svg>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════
+// DATA MANAGEMENT
+// ═══════════════════════════════════════
+function exportData(){
+  const data = btoa(JSON.stringify(S));
+  const blob = new Blob([data],{type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'fec_backup_'+today()+'.txt';
+  a.click();
+}
+
+function importData(){
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.txt';
+  input.onchange = e => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try{
+        S = JSON.parse(atob(ev.target.result));
+        saveState();
+        render();
+        alert('Import réussi !');
+      }catch(err){ alert('Erreur : fichier invalide'); }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+function resetData(){
+  if(confirm('Réinitialiser toutes les données ? Cette action est irréversible.')){
+    S = defaultState();
+    saveState();
+    render();
+  }
+}
+
+// ═══════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════
+function exitDrill(){
+  if(drillState?.timerInterval) clearInterval(drillState.timerInterval);
+  drillState = null;
+  render();
+}
+
+function toggleDark(){
+  S.darkMode = !S.darkMode;
+  document.documentElement.setAttribute('data-theme', S.darkMode?'dark':'');
+  document.getElementById('dm-btn').textContent = S.darkMode?'light':'dark';
+  saveState();
+}
+
+
+// ═══════════════════════════════════════
+// AUDIO ENGINE (Web Audio API — offline)
+// ═══════════════════════════════════════
+const AC = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+function getAC(){ if(!audioCtx) audioCtx = new AC(); return audioCtx; }
+function playTone(freq, type='sine', dur=0.15, vol=0.25){
+  try{
+    const ctx=getAC(), o=ctx.createOscillator(), g=ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.type=type; o.frequency.value=freq;
+    g.gain.setValueAtTime(vol,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur);
+    o.start(); o.stop(ctx.currentTime+dur);
+  }catch(e){}
+}
+function playCorrect(){ playTone(880,'sine',0.12); setTimeout(()=>playTone(1100,'sine',0.1),90); }
+function playWrong(){ playTone(200,'sawtooth',0.25); }
+function playRecord(){ [880,1046,1318].forEach((f,i)=>setTimeout(()=>playTone(f,'sine',0.18),i*80)); }
+
+// ═══════════════════════════════════════
+// CONFETTI ENGINE
+// ═══════════════════════════════════════
+function launchConfetti(){
+  const colors=['#111','#555','#999','#ddd','#fff','#333'];
+  const container=document.createElement('div');
+  container.className='confetti-container';
+  document.body.appendChild(container);
+  for(let i=0;i<60;i++){
+    const piece=document.createElement('div');
+    piece.className='confetti-piece';
+    piece.style.cssText=`left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${1.2+Math.random()*1.2}s;animation-delay:${Math.random()*.5}s;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;border-radius:${Math.random()>0.5?'50%':'2px'};opacity:.9`;
+    container.appendChild(piece);
+  }
+  setTimeout(()=>container.remove(),3000);
+}
+
+// ═══════════════════════════════════════
+// BLITZ DATABASE — mots de transition + catégories
+// ═══════════════════════════════════════
+const BLITZ_DB = {
+  transitions:[
+    {en:"however",fr:"cependant, néanmoins"},{en:"therefore",fr:"donc, par conséquent"},{en:"nevertheless",fr:"néanmoins, toutefois"},
+    {en:"furthermore",fr:"de plus, en outre"},{en:"moreover",fr:"de plus, qui plus est"},{en:"although",fr:"bien que, même si"},
+    {en:"whereas",fr:"alors que, tandis que"},{en:"consequently",fr:"par conséquent, en conséquence"},{en:"nonetheless",fr:"néanmoins, pourtant"},
+    {en:"thus",fr:"ainsi, donc"},{en:"thereby",fr:"ainsi, de ce fait"},{en:"meanwhile",fr:"pendant ce temps, entre-temps"},
+    {en:"subsequently",fr:"par la suite, ensuite"},{en:"accordingly",fr:"en conséquence, par conséquent"},{en:"alternatively",fr:"autrement, sinon"},
+    {en:"conversely",fr:"inversement, à l'inverse"},{en:"likewise",fr:"de même, pareillement"},{en:"similarly",fr:"de même, de façon similaire"},
+    {en:"despite",fr:"malgré, en dépit de"},{en:"regardless",fr:"malgré tout, quoi qu'il en soit"},
+    {en:"whereas",fr:"alors que, tandis que"},{en:"provided that",fr:"à condition que, pourvu que"},
+    {en:"as a result",fr:"en conséquence, par conséquent"},{en:"in contrast",fr:"en revanche, par contraste"},
+    {en:"on the contrary",fr:"au contraire"},{en:"in addition",fr:"de plus, en plus"},{en:"for instance",fr:"par exemple"},
+    {en:"in other words",fr:"en d'autres termes, autrement dit"},{en:"to sum up",fr:"pour résumer, en somme"},
+    {en:"in conclusion",fr:"en conclusion, pour conclure"}
+  ],
+  connectors:[
+    {en:"because",fr:"parce que, car"},{en:"since",fr:"depuis, puisque, car"},{en:"unless",fr:"à moins que, sauf si"},
+    {en:"until",fr:"jusqu'à ce que, avant que"},{en:"while",fr:"pendant que, tandis que"},{en:"once",fr:"une fois que, dès que"},
+    {en:"whenever",fr:"chaque fois que, quand"},{en:"wherever",fr:"partout où, où que"},{en:"whether",fr:"que, si"},
+    {en:"so that",fr:"afin que, pour que"},{en:"in order to",fr:"afin de, pour"},{en:"as long as",fr:"tant que, aussi longtemps que"},
+    {en:"as soon as",fr:"dès que, aussitôt que"},{en:"even though",fr:"même si, bien que"},{en:"no matter how",fr:"quelle que soit la façon"},
+    {en:"rather than",fr:"plutôt que"},{en:"given that",fr:"étant donné que"},{en:"assuming that",fr:"en supposant que"},
+    {en:"provided",fr:"à condition que"},{en:"owing to",fr:"en raison de, à cause de"}
+  ],
+  adverbs:[
+    {en:"significantly",fr:"considérablement, de façon significative"},{en:"substantially",fr:"considérablement, substantiellement"},
+    {en:"gradually",fr:"progressivement, graduellement"},{en:"remarkably",fr:"remarquablement, de façon remarquable"},
+    {en:"precisely",fr:"précisément, exactement"},{en:"ultimately",fr:"finalement, en fin de compte"},
+    {en:"essentially",fr:"essentiellement, fondamentalement"},{en:"notably",fr:"notamment, en particulier"},
+    {en:"apparently",fr:"apparemment, à l'évidence"},{en:"evidently",fr:"manifestement, de toute évidence"},
+    {en:"inevitably",fr:"inévitablement"},{en:"predominantly",fr:"principalement, essentiellement"},
+    {en:"consistently",fr:"constamment, de façon constante"},{en:"initially",fr:"initialement, au départ"},
+    {en:"particularly",fr:"particulièrement, notamment"},{en:"broadly",fr:"globalement, dans l'ensemble"},
+    {en:"increasingly",fr:"de plus en plus"},{en:"explicitly",fr:"explicitement, clairement"},
+    {en:"largely",fr:"en grande partie, largement"},{en:"severely",fr:"sévèrement, gravement"}
+  ],
+  idioms:[
+    {en:"cut corners",fr:"faire les choses à moitié, bâcler"},{en:"hit the ground running",fr:"démarrer en trombe, être opérationnel dès le début"},
+    {en:"think outside the box",fr:"sortir des sentiers battus, penser différemment"},{en:"bite the bullet",fr:"prendre son courage à deux mains, serrer les dents"},
+    {en:"break the ice",fr:"briser la glace"},{en:"get the ball rolling",fr:"lancer les choses, démarrer"},
+    {en:"burning the midnight oil",fr:"travailler tard dans la nuit"},{en:"ahead of the curve",fr:"en avance sur son temps"},
+    {en:"under the radar",fr:"sous le radar, discrètement"},{en:"on the same page",fr:"sur la même longueur d'onde"},
+    {en:"ballpark figure",fr:"chiffre approximatif"},{en:"back to the drawing board",fr:"reprendre à zéro"},
+    {en:"up in the air",fr:"dans le flou, indécis"},{en:"a steep learning curve",fr:"une courbe d'apprentissage difficile"},
+    {en:"move the needle",fr:"faire bouger les choses, avoir un impact"},{en:"low-hanging fruit",fr:"les choses faciles à obtenir"},
+    {en:"bandwidth",fr:"capacité (de travail), disponibilité"},{en:"deep dive",fr:"analyse approfondie"},
+    {en:"pain point",fr:"point de friction, problème clé"},{en:"circle back",fr:"revenir sur le sujet, faire le point"}
+  ],
+  business:[
+    {en:"leverage",fr:"levier, exploiter"},{en:"synergy",fr:"synergie"},{en:"stakeholder",fr:"partie prenante"},
+    {en:"benchmark",fr:"référence, point de comparaison"},{en:"scalable",fr:"évolutif, scalable"},{en:"disruptive",fr:"disruptif, perturbateur"},
+    {en:"pivot",fr:"pivoter, changer de stratégie"},{en:"traction",fr:"traction, adhésion"},{en:"runway",fr:"autonomie financière"},
+    {en:"burn rate",fr:"taux de consommation de trésorerie"},{en:"due diligence",fr:"vérification préalable, diligence raisonnable"},
+    {en:"acquisition",fr:"acquisition, rachat"},{en:"revenue",fr:"chiffre d'affaires, revenus"},{en:"valuation",fr:"valorisation, évaluation"},
+    {en:"equity",fr:"capitaux propres, équité"},{en:"margin",fr:"marge"},{en:"headcount",fr:"effectif, nombre d'employés"},
+    {en:"turnaround",fr:"redressement, retournement"},{en:"milestone",fr:"jalon, étape clé"},{en:"deliverable",fr:"livrable"}
+  ]
+};
+
+// ═══════════════════════════════════════
+// SCENE DATABASE — 100% SVG offline
+// ═══════════════════════════════════════
+function svgScene(content, bg='#f0ede8'){
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="${bg}"/>${content}</svg>`)}`;
+}
+
+const SCENES = [
+  {
+    id:'s1', hint:'Open-space office',
+    svg: svgScene(`
+      <rect x="0" y="220" width="400" height="80" fill="#e8e4de"/>
+      <rect x="30" y="160" width="120" height="70" rx="4" fill="#d4cfc8"/><rect x="35" y="165" width="110" height="55" rx="2" fill="#c8c3bb"/>
+      <rect x="180" y="155" width="130" height="75" rx="4" fill="#d4cfc8"/><rect x="185" y="160" width="120" height="60" rx="2" fill="#bbb5ad"/>
+      <rect x="55" y="145" width="70" height="8" rx="2" fill="#b8b2aa"/>
+      <rect x="200" y="140" width="80" height="8" rx="2" fill="#b8b2aa"/>
+      <ellipse cx="90" cy="143" rx="18" ry="22" fill="#c9a98a"/><rect x="72" y="155" width="36" height="50" rx="8" fill="#4a4a5a"/>
+      <ellipse cx="250" cy="138" rx="16" ry="20" fill="#a07850"/><rect x="234" y="150" width="32" height="48" rx="8" fill="#5a4a3a"/>
+      <rect x="0" y="100" width="400" height="3" fill="#c8c3bb" opacity="0.4"/>
+      <rect x="0" y="60" width="400" height="3" fill="#c8c3bb" opacity="0.3"/>
+      <rect x="310" y="80" width="80" height="140" fill="#d8d3cc" opacity="0.6"/>
+      <rect x="20" y="20" width="60" height="40" rx="2" fill="#e2ddd8"/><rect x="25" y="25" width="50" height="30" rx="1" fill="#c5c0b8"/>
+      <text x="200" y="290" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Open-space office</text>
+    `, '#f0ede8')
+  },
+  {
+    id:'s2', hint:'Coffee shop',
+    svg: svgScene(`
+      <rect x="0" y="240" width="400" height="60" fill="#d4b896"/>
+      <rect x="0" y="200" width="400" height="45" fill="#e8d5be"/>
+      <rect x="60" y="130" width="120" height="90" rx="3" fill="#c8a878"/><rect x="65" y="135" width="110" height="80" rx="2" fill="#e8d5be"/>
+      <rect x="220" y="120" width="130" height="100" rx="3" fill="#c8a878"/><rect x="225" y="125" width="120" height="90" rx="2" fill="#f0e0c8"/>
+      <ellipse cx="120" cy="205" rx="30" ry="5" fill="#b89060"/>
+      <ellipse cx="280" cy="200" rx="35" ry="5" fill="#b89060"/>
+      <rect x="105" y="175" width="30" height="30" rx="15" fill="#c8c8c8"/><ellipse cx="120" cy="175" rx="14" ry="4" fill="#ddd"/>
+      <rect x="265" y="168" width="28" height="32" rx="14" fill="#d0d0d0"/><ellipse cx="279" cy="168" rx="13" ry="4" fill="#e8e8e8"/>
+      <ellipse cx="80" cy="125" rx="15" ry="18" fill="#c9a98a"/><rect x="65" y="137" width="30" height="40" rx="6" fill="#8B4513"/>
+      <ellipse cx="240" cy="118" rx="14" ry="17" fill="#a07850"/><rect x="226" y="130" width="28" height="38" rx="6" fill="#6B3410"/>
+      <rect x="0" y="50" width="400" height="60" fill="#8B6040" opacity="0.15"/>
+      <rect x="10" y="55" width="80" height="50" rx="3" fill="#c8a060" opacity="0.5"/>
+      <rect x="120" y="50" width="60" height="55" rx="3" fill="#b89050" opacity="0.4"/>
+      <rect x="310" y="45" width="70" height="60" rx="3" fill="#c8a060" opacity="0.5"/>
+      <text x="200" y="290" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Coffee shop</text>
+    `, '#f5ede0')
+  },
+  {
+    id:'s3', hint:'Team meeting',
+    svg: svgScene(`
+      <rect x="80" y="130" width="240" height="130" rx="8" fill="#d8d3cc"/>
+      <rect x="100" y="145" width="200" height="100" rx="4" fill="#c8c3ba"/>
+      <ellipse cx="130" cy="128" rx="16" ry="19" fill="#c9a98a"/><rect x="114" y="142" width="32" height="42" rx="7" fill="#3a4a5a"/>
+      <ellipse cx="200" cy="122" rx="17" ry="20" fill="#b08060"/><rect x="183" y="136" width="34" height="44" rx="7" fill="#5a3a2a"/>
+      <ellipse cx="270" cy="128" rx="16" ry="19" fill="#d4b090"/><rect x="254" y="142" width="32" height="42" rx="7" fill="#4a5a3a"/>
+      <rect x="130" y="195" width="30" height="3" rx="1" fill="#a8a3a0"/>
+      <rect x="170" y="190" width="60" height="3" rx="1" fill="#a8a3a0"/>
+      <rect x="240" y="195" width="30" height="3" rx="1" fill="#a8a3a0"/>
+      <rect x="30" y="80" width="340" height="35" rx="3" fill="#e0dbd4"/>
+      <rect x="40" y="87" width="100" height="5" rx="2" fill="#c0bbb4"/>
+      <rect x="150" y="87" width="70" height="5" rx="2" fill="#c0bbb4"/>
+      <rect x="230" y="87" width="50" height="5" rx="2" fill="#d4cfc8"/>
+      <rect x="0" y="270" width="400" height="30" fill="#e8e4de"/>
+      <text x="200" y="293" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Team meeting</text>
+    `, '#eeeae4')
+  },
+  {
+    id:'s4', hint:'Business presentation',
+    svg: svgScene(`
+      <rect x="0" y="240" width="400" height="60" fill="#ddd8d0"/>
+      <rect x="60" y="60" width="280" height="180" rx="4" fill="#e8e4de"/>
+      <rect x="70" y="70" width="260" height="160" rx="2" fill="#f5f2ee"/>
+      <rect x="85" y="85" width="180" height="10" rx="2" fill="#c0bbb4"/>
+      <rect x="85" y="102" width="140" height="6" rx="2" fill="#d4cfc8"/>
+      <rect x="85" y="120" width="60" height="40" rx="2" fill="#e0dbd4"/>
+      <rect x="155" y="120" width="50" height="40" rx="2" fill="#d8d3cc"/>
+      <rect x="215" y="128" width="45" height="32" rx="2" fill="#c8c3ba"/>
+      <rect x="275" y="120" width="40" height="40" rx="2" fill="#d0cbc4"/>
+      <rect x="85" y="170" width="230" height="5" rx="2" fill="#d8d3cc"/>
+      <rect x="85" y="182" width="180" height="4" rx="2" fill="#e0dbd4"/>
+      <rect x="85" y="193" width="200" height="4" rx="2" fill="#e0dbd4"/>
+      <ellipse cx="200" cy="255" rx="20" ry="4" fill="#c0bbb4"/>
+      <rect x="196" y="236" width="8" height="20" fill="#c8c3ba"/>
+      <ellipse cx="110" cy="252" rx="14" ry="17" fill="#c9a98a"/><rect x="96" y="265" width="28" height="35" rx="6" fill="#4a3a5a"/>
+      <ellipse cx="295" cy="250" rx="13" ry="16" fill="#b08060"/><rect x="282" y="263" width="26" height="33" rx="6" fill="#3a4a3a"/>
+      <text x="200" y="293" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Business presentation</text>
+    `, '#f0ede8')
+  },
+  {
+    id:'s5', hint:'Remote work at home',
+    svg: svgScene(`
+      <rect x="0" y="200" width="400" height="100" fill="#e0d8cc"/>
+      <rect x="0" y="60" width="400" height="145" fill="#f0ebe2"/>
+      <rect x="0" y="0" width="400" height="65" fill="#d4ccc0"/>
+      <rect x="100" y="100" width="200" height="130" rx="6" fill="#c8c3ba"/>
+      <rect x="108" y="108" width="184" height="110" rx="3" fill="#ddd9d2"/>
+      <rect x="116" y="116" width="168" height="94" rx="2" fill="#b8b4ac" opacity="0.4"/>
+      <rect x="125" y="122" width="130" height="8" rx="2" fill="#c8c3ba"/>
+      <rect x="125" y="136" width="100" height="6" rx="2" fill="#d0cbc4"/>
+      <rect x="125" y="148" width="80" height="40" rx="2" fill="#c4bfb8"/>
+      <rect x="215" y="148" width="55" height="40" rx="2" fill="#bbb6af"/>
+      <rect x="155" y="228" width="90" height="6" rx="3" fill="#b8b3ac"/>
+      <rect x="60" y="130" width="30" height="40" rx="4" fill="#d4cfc8"/><rect x="65" y="135" width="20" height="30" rx="2" fill="#c4bfb8"/>
+      <ellipse cx="75" cy="128" rx="12" ry="14" fill="#d4a888"/>
+      <rect x="290" y="160" width="25" height="18" rx="3" fill="#e8e2d8"/>
+      <rect x="295" y="175" width="15" height="8" rx="1" fill="#c8c3ba"/>
+      <rect x="25" y="190" width="50" height="40" rx="4" fill="#d8d3cc"/>
+      <rect x="325" y="180" width="55" height="50" rx="4" fill="#d0cbc4"/>
+      <text x="200" y="293" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Working from home</text>
+    `, '#ede8e0')
+  },
+  {
+    id:'s6', hint:'Brainstorming session',
+    svg: svgScene(`
+      <rect x="0" y="220" width="400" height="80" fill="#e0dbd4"/>
+      <rect x="20" y="40" width="260" height="200" rx="4" fill="#f5f2ee"/>
+      <rect x="20" y="40" width="260" height="8" rx="4" fill="#d4cfc8"/>
+      <rect x="35" y="65" width="100" height="6" rx="2" fill="#ccc7c0"/>
+      <rect x="35" y="78" width="130" height="4" rx="2" fill="#d8d3cc"/>
+      <rect x="35" y="90" width="80" height="4" rx="2" fill="#d8d3cc"/>
+      <rect x="35" y="110" width="50" height="30" rx="3" fill="#e8e4de" stroke="#c8c3ba" stroke-width="1"/>
+      <rect x="95" y="108" width="55" height="30" rx="3" fill="#e8e4de" stroke="#c8c3ba" stroke-width="1"/>
+      <rect x="35" y="150" width="40" height="25" rx="3" fill="#f0ede8" stroke="#c8c3ba" stroke-width="1"/>
+      <rect x="85" y="150" width="60" height="25" rx="3" fill="#f0ede8" stroke="#c8c3ba" stroke-width="1"/>
+      <rect x="155" y="150" width="45" height="25" rx="3" fill="#f0ede8" stroke="#c8c3ba" stroke-width="1"/>
+      <line x1="60" y1="138" x2="65" y2="150" stroke="#b8b3ac" stroke-width="1.5"/>
+      <line x1="122" y1="138" x2="115" y2="150" stroke="#b8b3ac" stroke-width="1.5"/>
+      <ellipse cx="330" cy="150" rx="18" ry="22" fill="#c9a98a"/><rect x="312" y="167" width="36" height="55" rx="8" fill="#4a3a2a"/>
+      <rect x="310" y="80" width="32" height="4" rx="1" fill="#b8b3ac"/>
+      <text x="200" y="293" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Brainstorming session</text>
+    `, '#eeeae4')
+  },
+  {
+    id:'s7', hint:'Street scene',
+    svg: svgScene(`
+      <rect x="0" y="0" width="400" height="200" fill="#d8d4cc"/>
+      <rect x="0" y="200" width="400" height="100" fill="#b8b4ac"/>
+      <rect x="0" y="195" width="400" height="10" fill="#c8c4bc"/>
+      <rect x="20" y="60" width="80" height="140" rx="2" fill="#c4bfb8"/>
+      <rect x="25" y="70" width="30" height="20" rx="1" fill="#d4cfc8"/><rect x="62" y="70" width="30" height="20" rx="1" fill="#ddd9d2"/>
+      <rect x="25" y="100" width="30" height="20" rx="1" fill="#e8e4de"/><rect x="62" y="100" width="30" height="20" rx="1" fill="#c8c3ba"/>
+      <rect x="25" y="130" width="30" height="20" rx="1" fill="#d0cbc4"/><rect x="62" y="130" width="30" height="20" rx="1" fill="#e0dbd4"/>
+      <rect x="35" y="160" width="30" height="40" rx="1" fill="#b0aba4"/>
+      <rect x="130" y="40" width="100" height="160" rx="2" fill="#bab5ae"/>
+      <rect x="140" y="55" width="35" height="25" rx="1" fill="#d8d3cc"/><rect x="185" y="55" width="35" height="25" rx="1" fill="#e0dbd4"/>
+      <rect x="140" y="90" width="35" height="25" rx="1" fill="#ccc7c0"/><rect x="185" y="90" width="35" height="25" rx="1" fill="#d4cfc8"/>
+      <rect x="140" y="125" width="35" height="25" rx="1" fill="#e8e4de"/><rect x="185" y="125" width="35" height="25" rx="1" fill="#c8c3ba"/>
+      <rect x="155" y="160" width="40" height="40" rx="1" fill="#a8a4a0"/>
+      <rect x="300" y="80" width="70" height="120" rx="2" fill="#c8c3ba"/>
+      <rect x="310" y="95" width="20" height="15" rx="1" fill="#d8d3cc"/><rect x="338" y="95" width="20" height="15" rx="1" fill="#e0dbd4"/>
+      <rect x="310" y="118" width="20" height="15" rx="1" fill="#c8c3ba"/><rect x="338" y="118" width="20" height="15" rx="1" fill="#d4cfc8"/>
+      <rect x="315" y="155" width="25" height="45" rx="1" fill="#b0aba4"/>
+      <ellipse cx="210" cy="208" rx="13" ry="17" fill="#d4a888"/><rect x="197" y="220" width="26" height="45" rx="5" fill="#5a4a3a"/>
+      <ellipse cx="255" cy="212" rx="11" ry="15" fill="#c09070"/><rect x="244" y="224" width="22" height="38" rx="5" fill="#3a4a5a"/>
+      <rect x="150" y="200" width="100" height="5" fill="#c8c4bc" opacity="0.6"/>
+      <text x="200" y="293" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Street scene</text>
+    `, '#d8d4cc')
+  },
+  {
+    id:'s8', hint:'Job interview',
+    svg: svgScene(`
+      <rect x="0" y="0" width="400" height="300" fill="#f0ede8"/>
+      <rect x="0" y="230" width="400" height="70" fill="#e8e4de"/>
+      <rect x="80" y="160" width="240" height="4" rx="2" fill="#d0cbc4"/>
+      <rect x="100" y="164" width="200" height="100" rx="3" fill="#d8d3cc"/>
+      <ellipse cx="145" cy="155" rx="22" ry="26" fill="#c9a98a"/>
+      <rect x="123" y="176" width="44" height="60" rx="9" fill="#2a3a4a"/>
+      <rect x="140" y="176" width="10" height="25" fill="#3a4a5a"/>
+      <ellipse cx="275" cy="150" rx="20" ry="24" fill="#b08060"/>
+      <rect x="255" y="170" width="40" height="58" rx="9" fill="#4a3a2a"/>
+      <rect x="270" y="170" width="10" height="22" fill="#5a4a3a"/>
+      <rect x="115" y="200" width="60" height="4" rx="2" fill="#b8b3ac"/>
+      <rect x="115" y="210" width="45" height="3" rx="1" fill="#c8c3ba"/>
+      <rect x="240" y="195" width="55" height="4" rx="2" fill="#b8b3ac"/>
+      <rect x="240" y="205" width="40" height="3" rx="1" fill="#c8c3ba"/>
+      <rect x="190" y="185" width="20" height="30" rx="2" fill="#c8c3ba"/>
+      <rect x="50" y="80" width="120" height="70" rx="4" fill="#e0dbd4"/>
+      <rect x="58" y="90" width="90" height="6" rx="2" fill="#c8c3ba"/>
+      <rect x="58" y="104" width="70" height="4" rx="2" fill="#d4cfc8"/>
+      <rect x="58" y="114" width="80" height="4" rx="2" fill="#d4cfc8"/>
+      <rect x="58" y="124" width="60" height="4" rx="2" fill="#d4cfc8"/>
+      <text x="200" y="293" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Job interview</text>
+    `, '#f0ede8')
+  },
+  {
+    id:'s9', hint:'Data dashboard',
+    svg: svgScene(`
+      <rect x="20" y="20" width="360" height="260" rx="6" fill="#e8e4de"/>
+      <rect x="20" y="20" width="360" height="30" rx="6" fill="#d0cbc4"/>
+      <rect x="30" y="30" width="80" height="10" rx="2" fill="#b8b3ac"/>
+      <rect x="320" y="30" width="30" height="10" rx="2" fill="#c8c3ba"/>
+      <rect x="30" y="65" width="100" height="60" rx="3" fill="#f5f2ee"/>
+      <rect x="30" y="65" width="100" height="16" rx="3" fill="#c8c3ba"/>
+      <rect x="36" y="70" width="50" height="6" rx="2" fill="#e8e4de"/>
+      <rect x="36" y="90" width="80" height="20" rx="2" fill="#d8d3cc"/>
+      <rect x="140" y="65" width="100" height="60" rx="3" fill="#f5f2ee"/>
+      <rect x="140" y="65" width="100" height="16" rx="3" fill="#c8c3ba"/>
+      <rect x="146" y="70" width="55" height="6" rx="2" fill="#e8e4de"/>
+      <rect x="146" y="90" width="80" height="20" rx="2" fill="#d0cbc4"/>
+      <rect x="250" y="65" width="110" height="60" rx="3" fill="#f5f2ee"/>
+      <rect x="250" y="65" width="110" height="16" rx="3" fill="#c8c3ba"/>
+      <rect x="256" y="70" width="60" height="6" rx="2" fill="#e8e4de"/>
+      <rect x="256" y="90" width="85" height="20" rx="2" fill="#d8d3cc"/>
+      <rect x="30" y="140" width="200" height="120" rx="3" fill="#f5f2ee"/>
+      <rect x="30" y="140" width="200" height="18" rx="3" fill="#c8c3ba"/>
+      <rect x="38" y="147" width="60" height="6" rx="2" fill="#e8e4de"/>
+      <line x1="45" y1="235" x2="45" y2="175" stroke="#d4cfc8" stroke-width="1"/>
+      <line x1="45" y1="235" x2="220" y2="235" stroke="#d4cfc8" stroke-width="1"/>
+      <rect x="60" y="200" width="20" height="35" rx="2" fill="#b8b3ac"/>
+      <rect x="90" y="185" width="20" height="50" rx="2" fill="#c8c3ba"/>
+      <rect x="120" y="195" width="20" height="40" rx="2" fill="#b0aba4"/>
+      <rect x="150" y="180" width="20" height="55" rx="2" fill="#c0bbb4"/>
+      <rect x="180" y="190" width="20" height="45" rx="2" fill="#b8b3ac"/>
+      <rect x="240" y="140" width="120" height="120" rx="3" fill="#f5f2ee"/>
+      <rect x="240" y="140" width="120" height="18" rx="3" fill="#c8c3ba"/>
+      <rect x="248" y="147" width="55" height="6" rx="2" fill="#e8e4de"/>
+      <circle cx="300" cy="210" r="38" fill="none" stroke="#d4cfc8" stroke-width="18" stroke-dasharray="72 168" stroke-dashoffset="0"/>
+      <circle cx="300" cy="210" r="38" fill="none" stroke="#b8b3ac" stroke-width="18" stroke-dasharray="50 190" stroke-dashoffset="-72"/>
+      <circle cx="300" cy="210" r="38" fill="none" stroke="#c8c3ba" stroke-width="18" stroke-dasharray="46 194" stroke-dashoffset="-122"/>
+      <text x="200" y="293" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Data dashboard</text>
+    `, '#e8e4de')
+  },
+  {
+    id:'s10', hint:'Negotiation / contract signing',
+    svg: svgScene(`
+      <rect x="0" y="220" width="400" height="80" fill="#e0dbd4"/>
+      <rect x="80" y="140" width="240" height="4" rx="2" fill="#c8c3ba"/>
+      <rect x="80" y="144" width="240" height="100" rx="3" fill="#d8d3cc"/>
+      <rect x="100" y="160" width="200" height="70" rx="2" fill="#f0ede8"/>
+      <rect x="112" y="170" width="150" height="5" rx="2" fill="#c8c3ba"/>
+      <rect x="112" y="182" width="120" height="4" rx="2" fill="#d4cfc8"/>
+      <rect x="112" y="193" width="130" height="4" rx="2" fill="#d4cfc8"/>
+      <rect x="112" y="204" width="100" height="4" rx="2" fill="#d4cfc8"/>
+      <path d="M160 215 Q175 208 190 215" stroke="#5a4a3a" stroke-width="2" fill="none"/>
+      <ellipse cx="130" cy="138" rx="20" ry="24" fill="#c9a98a"/>
+      <rect x="110" y="158" width="40" height="60" rx="8" fill="#3a4a5a"/>
+      <ellipse cx="270" cy="134" rx="19" ry="23" fill="#b08060"/>
+      <rect x="251" y="154" width="38" height="58" rx="8" fill="#5a3a2a"/>
+      <rect x="258" y="195" width="15" height="25" rx="3" fill="#888" transform="rotate(-20 265 195)"/>
+      <text x="200" y="293" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Contract signing</text>
+    `, '#ede8e0')
+  },
+  {
+    id:'s11', hint:'Phone call at work',
+    svg: svgScene(`
+      <rect x="0" y="0" width="400" height="300" fill="#f0ede8"/>
+      <rect x="0" y="240" width="400" height="60" fill="#e8e4de"/>
+      <rect x="100" y="80" width="200" height="160" rx="5" fill="#e0dbd4"/>
+      <rect x="110" y="90" width="180" height="100" rx="3" fill="#d4cfc8"/>
+      <rect x="120" y="100" width="120" height="7" rx="2" fill="#c8c3ba"/>
+      <rect x="120" y="115" width="90" height="5" rx="2" fill="#d4cfc8"/>
+      <rect x="120" y="127" width="100" height="5" rx="2" fill="#d4cfc8"/>
+      <rect x="120" y="145" width="40" height="30" rx="2" fill="#c4bfb8"/>
+      <rect x="170" y="145" width="40" height="30" rx="2" fill="#bbb6af"/>
+      <rect x="220" y="145" width="40" height="30" rx="2" fill="#c8c3ba"/>
+      <rect x="150" y="210" width="100" height="18" rx="9" fill="#b8b3ac"/>
+      <ellipse cx="190" cy="138" rx="28" ry="33" fill="#c9a98a"/>
+      <rect x="162" y="166" width="56" height="75" rx="12" fill="#4a3a2a"/>
+      <rect x="235" y="110" width="28" height="45" rx="14" fill="#d8d3cc"/>
+      <rect x="238" y="115" width="22" height="35" rx="11" fill="#c8c3ba"/>
+      <rect x="240" y="125" width="18" height="5" rx="2" fill="#b8b3ac"/>
+      <rect x="240" y="133" width="18" height="5" rx="2" fill="#b8b3ac"/>
+      <text x="200" y="293" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Phone call at work</text>
+    `, '#f0ede8')
+  },
+  {
+    id:'s12', hint:'Restaurant lunch meeting',
+    svg: svgScene(`
+      <rect x="0" y="0" width="400" height="300" fill="#ede8e0"/>
+      <rect x="0" y="240" width="400" height="60" fill="#e0dbd4"/>
+      <ellipse cx="200" cy="200" rx="140" ry="50" fill="#d4cfc8"/>
+      <ellipse cx="200" cy="198" rx="135" ry="45" fill="#ddd8d0"/>
+      <ellipse cx="140" cy="195" rx="35" ry="5" fill="#c8c3ba"/>
+      <ellipse cx="260" cy="193" rx="35" ry="5" fill="#c8c3ba"/>
+      <rect x="120" y="175" width="40" height="28" rx="2" fill="#f0ede8" stroke="#c8c3ba" stroke-width="1"/>
+      <rect x="240" y="173" width="40" height="28" rx="2" fill="#f0ede8" stroke="#c8c3ba" stroke-width="1"/>
+      <rect x="125" y="165" width="8" height="20" rx="1" fill="#c8c3ba"/>
+      <rect x="155" y="165" width="8" height="20" rx="1" fill="#c8c3ba"/>
+      <ellipse cx="145" cy="215" rx="5" ry="5" fill="#b8b3ac"/>
+      <ellipse cx="160" cy="218" rx="4" ry="4" fill="#b8b3ac"/>
+      <ellipse cx="255" cy="213" rx="5" ry="5" fill="#b8b3ac"/>
+      <ellipse cx="270" cy="216" rx="4" ry="4" fill="#b8b3ac"/>
+      <ellipse cx="130" cy="155" rx="19" ry="23" fill="#d4a888"/>
+      <rect x="111" y="174" width="38" height="55" rx="8" fill="#5a4a3a"/>
+      <ellipse cx="272" cy="150" rx="18" ry="22" fill="#b08060"/>
+      <rect x="254" y="169" width="36" height="53" rx="8" fill="#3a4a5a"/>
+      <rect x="60" y="90" width="70" height="100" rx="4" fill="#e8e4de"/>
+      <rect x="68" y="100" width="54" height="7" rx="2" fill="#c8c3ba"/>
+      <rect x="68" y="114" width="40" height="5" rx="2" fill="#d4cfc8"/>
+      <rect x="68" y="125" width="45" height="5" rx="2" fill="#d4cfc8"/>
+      <rect x="68" y="136" width="35" height="5" rx="2" fill="#d4cfc8"/>
+      <text x="200" y="293" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Restaurant lunch meeting</text>
+    `, '#ede8e0')
+  },
+];
+
+// ═══════════════════════════════════════
+// MODES SELECT SCREEN
+// ═══════════════════════════════════════
+function renderModesSelect(m){
+  const blitzRecords = S.blitzRecords || {};
+  const scDone = (S.sceneDone||0);
+  const trDone = (S.translateDone||0);
+
+  m.innerHTML = `<div class="screen">
+    <p style="font-size:18px;font-weight:600;margin-bottom:6px">Modes d'entraînement</p>
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:20px">Chaque session : 2 à 5 minutes.</p>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+
+      <div class="mode-card" style="animation-delay:.05s" onclick="startSceneMode()">
+        <div class="mode-card-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2 14l5-4 3 3 3-3.5 5 4.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="mode-card-title">Décris la scène</div>
+        <div class="mode-card-sub">Une photo apparaît — décris-la en anglais.<br>L'IA évalue ta description. 60 secondes.</div>
+        ${scDone>0?`<span class="mode-badge tag-blue">${scDone} scènes</span>`:''}
+      </div>
+
+      <div class="mode-card" style="animation-delay:.1s" onclick="startTranslateMode()">
+        <div class="mode-card-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h8M7 5V3M5 8c0 2 1.5 3.5 3.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 17l4-10 4 10M12 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="mode-card-title">FR → EN</div>
+        <div class="mode-card-sub">Une phrase française, tu la traduis en anglais.<br>L'IA juge si c'est correct selon ton niveau.</div>
+        ${trDone>0?`<span class="mode-badge tag-green">${trDone} phrases</span>`:''}
+      </div>
+
+      <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-top:8px;margin-bottom:8px">Blitz — 1 minute de feu</p>
+
+      ${Object.keys(BLITZ_DB).map((cat,i)=>{
+        const labels={transitions:'Transitions',connectors:'Connecteurs',adverbs:'Adverbes',idioms:'Expressions idiomatiques',business:'Business vocab',mywords:'Mes mots'};
+        const rec = (blitzRecords[cat]||0);
+        return `<div class="blitz-cat-btn" style="animation-delay:${.15+i*.05}s" onclick="startBlitz('${cat}')">
+          <div>
+            <div style="font-size:14px;font-weight:500">${labels[cat]}</div>
+            <div style="font-size:12px;color:var(--txt3);margin-top:2px">${BLITZ_DB[cat].length} mots · EN↔FR aléatoire</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:18px;font-weight:700;font-family:var(--mono)">${rec}</div>
+            <div style="font-size:10px;color:var(--txt3)">RECORD</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════
+// SCENE MODE
+// ═══════════════════════════════════════
+let sceneTimerInterval = null;
+
+function startSceneMode(){
+  const scene = SCENES[Math.floor(Math.random()*SCENES.length)];
+  drillState = {mode:'scene', scene, timeLeft:60, started:false, submitting:false, feedback:null, userText:''};
+  render();
+}
+
+function renderSceneMode(m){
+  const ds = drillState;
+  document.getElementById('hdr-sub').textContent = 'Décris la scène';
+
+  if(ds.feedback){
+    renderSceneFeedback(m); return;
+  }
+
+  const rem = ds.timeLeft;
+  const warn = rem<=15?'color:var(--red)':rem<=30?'color:var(--orange)':'';
+  const pct = (rem/60)*100;
+
+  m.innerHTML = `<div class="screen">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <button class="back-btn" onclick="exitSceneMode()">← Retour</button>
+      <span class="timer-display" style="font-size:20px;${warn}">${Math.floor(rem/60)}:${String(rem%60).padStart(2,'0')}</span>
+    </div>
+    <div style="height:4px;background:var(--bg3);border-radius:2px;margin-bottom:16px;overflow:hidden">
+      <div style="height:4px;background:var(--txt);border-radius:2px;width:${pct}%;transition:width 1s linear"></div>
+    </div>
+
+    <img class="scene-img" src="${ds.scene.svg}" alt="scene" style="image-rendering:auto">
+
+    <div style="margin-top:14px">
+      <p style="font-size:12px;color:var(--txt3);margin-bottom:8px">Décris ce que tu vois en anglais :</p>
+      <textarea id="scene-input" style="width:100%;padding:12px 14px;border:1px solid var(--border2);border-radius:var(--radius-sm);font-size:15px;font-family:var(--font);background:var(--bg);color:var(--txt);resize:none;height:110px;outline:none;line-height:1.5;transition:border-color .2s" placeholder="I can see... There is... The person is..." onfocus="this.style.borderColor='var(--txt)'" onblur="this.style.borderColor='var(--border2)'" onkeydown="if(event.key==='Enter'&&event.ctrlKey)submitScene()">${ds.userText}</textarea>
+      <p style="font-size:11px;color:var(--txt3);margin-top:4px">Ctrl+Entrée pour valider</p>
+    </div>
+
+    ${!ds.started?`<button class="btn btn-primary" style="margin-top:12px" onclick="startSceneTimer()">Lancer le chrono</button>`
+    :`<button class="btn btn-primary" style="margin-top:12px" onclick="submitScene()" ${ds.submitting?'disabled':''}>
+      ${ds.submitting?'<div class="spinner" style="width:18px;height:18px;border-width:2px;display:inline-block;vertical-align:middle"></div> Analyse en cours...':'Valider ma description'}
+    </button>`}
+  </div>`;
+
+  if(ds.started) setTimeout(()=>document.getElementById('scene-input')?.focus(),100);
+}
+
+function startSceneTimer(){
+  drillState.started = true;
+  if(sceneTimerInterval) clearInterval(sceneTimerInterval);
+  sceneTimerInterval = setInterval(()=>{
+    if(!drillState || drillState.mode!=='scene') return clearInterval(sceneTimerInterval);
+    drillState.timeLeft--;
+    if(drillState.timeLeft<=0){
+      clearInterval(sceneTimerInterval);
+      drillState.timeLeft=0;
+      submitScene();
+      return;
+    }
+    const timerEl = document.querySelector('.timer-display');
+    const barEl = document.querySelector('[style*="transition:width 1s"]');
+    if(timerEl){
+      const rem=drillState.timeLeft;
+      timerEl.textContent=`${Math.floor(rem/60)}:${String(rem%60).padStart(2,'0')}`;
+      timerEl.style.color=rem<=15?'var(--red)':rem<=30?'var(--orange)':'var(--txt)';
+    }
+    if(barEl) barEl.style.width=(drillState.timeLeft/60*100)+'%';
+    drillState.userText=document.getElementById('scene-input')?.value||'';
+  },1000);
+  render();
+}
+
+async function submitScene(){
+  if(drillState.submitting) return;
+  clearInterval(sceneTimerInterval);
+  drillState.userText = document.getElementById('scene-input')?.value || drillState.userText;
+  if(!drillState.userText.trim()){ alert('Écris quelque chose d\'abord !'); return; }
+  drillState.submitting = true;
+  render();
+
+  const text = drillState.userText;
+  const hint = drillState.scene.hint;
+  const timeUsed = 60 - drillState.timeLeft;
+
+  try{
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:400,
+        system:`Tu es un professeur d'anglais. Évalue la description en anglais d'une scène. Réponds UNIQUEMENT en JSON: {"score":0-10,"level":"A2/B1/B2/C1","correction":"correction courte max 1 phrase","tip":"conseil pratique max 1 phrase","good":"ce qui est bien max 1 phrase"}. Sois bref, direct, encourageant.`,
+        messages:[{role:'user',content:`Scène: ${hint}\nTemps utilisé: ${timeUsed}s\nDescription de l'élève: "${text}"`}]
+      })
+    });
+    const data = await res.json();
+    const txt = data.content?.find(b=>b.type==='text')?.text||'{}';
+    const clean = txt.replace(/```json|```/g,'').trim();
+    const result = JSON.parse(clean);
+    drillState.feedback = result;
+    drillState.submitting = false;
+    S.sceneDone = (S.sceneDone||0)+1;
+    addXP(result.score>=7?15:result.score>=4?8:4);
+    saveState();
+    if(result.score>=8) launchConfetti();
+    render();
+  }catch(e){
+    drillState.submitting=false;
+    drillState.feedback={score:5,level:'?',correction:'Évaluation hors-ligne non disponible.',tip:'Continue à t\'entraîner !',good:'Tu as écrit en anglais — c\'est déjà bien.'};
+    render();
+  }
+}
+
+function renderSceneFeedback(m){
+  const ds = drillState;
+  const fb = ds.feedback;
+  const scoreColor = fb.score>=7?'var(--green)':fb.score>=4?'var(--orange)':'var(--red)';
+  const scoreBg = fb.score>=7?'var(--green-bg)':fb.score>=4?'var(--orange-bg)':'var(--red-bg)';
+
+  m.innerHTML = `<div class="screen">
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:16px;text-align:center">Résultat</p>
+
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;padding:20px 32px;background:${scoreBg};border-radius:var(--radius)">
+        <span style="font-size:48px;font-weight:700;color:${scoreColor};font-family:var(--mono)">${fb.score}/10</span>
+        <span style="font-size:13px;color:var(--txt2)">${fb.level||''}</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      ${fb.good?`<div style="padding:12px 14px;background:var(--green-bg);border-radius:var(--radius-sm);border-left:3px solid var(--green)">
+        <p style="font-size:11px;color:var(--green-txt);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:600">Ce qui est bien</p>
+        <p style="font-size:14px;line-height:1.5;color:var(--green-txt)">${fb.good}</p>
+      </div>`:''}
+      ${fb.correction?`<div style="padding:12px 14px;background:var(--orange-bg);border-radius:var(--radius-sm);border-left:3px solid var(--orange)">
+        <p style="font-size:11px;color:var(--orange-txt);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:600">Correction</p>
+        <p style="font-size:14px;line-height:1.5;color:var(--orange-txt)">${fb.correction}</p>
+      </div>`:''}
+      ${fb.tip?`<div style="padding:12px 14px;background:var(--blue-bg);border-radius:var(--radius-sm);border-left:3px solid var(--blue)">
+        <p style="font-size:11px;color:var(--blue-txt);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:600">Conseil</p>
+        <p style="font-size:14px;line-height:1.5;color:var(--blue-txt)">${fb.tip}</p>
+      </div>`:''}
+    </div>
+
+    <div style="padding:12px 14px;background:var(--bg2);border-radius:var(--radius-sm);margin-bottom:20px">
+      <p style="font-size:11px;color:var(--txt3);margin-bottom:6px">Ta description</p>
+      <p style="font-size:13px;color:var(--txt2);line-height:1.5;font-style:italic">"${ds.userText}"</p>
+    </div>
+
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-ghost" style="flex:1" onclick="drillState=null;currentView='modes';render()">Retour</button>
+      <button class="btn btn-primary" style="flex:1" onclick="startSceneMode()">Nouvelle scène →</button>
+    </div>
+  </div>`;
+}
+
+function exitSceneMode(){
+  clearInterval(sceneTimerInterval);
+  drillState=null;
+  currentView='modes';
+  render();
+}
+
+// ═══════════════════════════════════════
+// TRANSLATE MODE (FR → EN)
+// ═══════════════════════════════════════
+let translateTimer = null;
+const TR_TOPICS = [
+  {fr:"Le marché a été très volatile cette semaine.",ctx:"finance",level:"B1"},
+  {fr:"Notre équipe a besoin d'améliorer sa communication.",ctx:"business",level:"A2"},
+  {fr:"Je dois présenter les résultats trimestriels demain.",ctx:"finance",level:"B1"},
+  {fr:"Les coûts ont augmenté de façon significative.",ctx:"finance",level:"B2"},
+  {fr:"Nous devons prendre une décision avant la fin du mois.",ctx:"business",level:"A2"},
+  {fr:"Le taux d'intérêt a été relevé de 50 points de base.",ctx:"finance",level:"B2"},
+  {fr:"Cette acquisition crée beaucoup de valeur pour les actionnaires.",ctx:"finance",level:"B2"},
+  {fr:"Il faut absolument éviter les mauvaises surprises lors de l'audit.",ctx:"finance",level:"C1"},
+  {fr:"La marge opérationnelle s'est contractée au dernier trimestre.",ctx:"finance",level:"C1"},
+  {fr:"Nous cherchons à lever des fonds auprès d'investisseurs institutionnels.",ctx:"finance",level:"B2"},
+  {fr:"Le projet a pris du retard à cause de problèmes techniques.",ctx:"general",level:"A2"},
+  {fr:"Elle a présenté ses arguments de manière très convaincante.",ctx:"general",level:"B1"},
+  {fr:"Nous devons trouver un terrain d'entente rapidement.",ctx:"business",level:"B1"},
+  {fr:"L'entreprise a dépassé ses objectifs de croissance cette année.",ctx:"finance",level:"B2"},
+  {fr:"Malgré la conjoncture difficile, les résultats sont encourageants.",ctx:"finance",level:"B2"},
+];
+
+function startTranslateMode(){
+  const sentence = TR_TOPICS[Math.floor(Math.random()*TR_TOPICS.length)];
+  drillState = {mode:'translate', sentence, timeLeft:90, started:false, submitting:false, feedback:null, userText:''};
+  render();
+}
+
+function renderTranslateMode(m){
+  const ds = drillState;
+  document.getElementById('hdr-sub').textContent = 'FR → EN';
+
+  if(ds.feedback){ renderTranslateFeedback(m); return; }
+
+  const rem = ds.timeLeft;
+  const warn = rem<=20?'color:var(--red)':rem<=40?'color:var(--orange)':'';
+
+  m.innerHTML = `<div class="screen">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <button class="back-btn" onclick="exitTranslateMode()">← Retour</button>
+      <span class="timer-display" style="font-size:20px;${warn}">${Math.floor(rem/60)}:${String(rem%60).padStart(2,'0')}</span>
+    </div>
+
+    <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Traduis en anglais</p>
+
+    <div style="padding:20px;background:var(--bg2);border-radius:var(--radius);margin-bottom:20px;border-left:3px solid var(--txt)">
+      <p style="font-size:20px;font-weight:500;line-height:1.4">${ds.sentence.fr}</p>
+      <p style="font-size:12px;color:var(--txt3);margin-top:8px">Contexte : ${ds.sentence.ctx} · Niveau : ${ds.sentence.level}</p>
+    </div>
+
+    <textarea id="tr-input" style="width:100%;padding:12px 14px;border:1px solid var(--border2);border-radius:var(--radius-sm);font-size:15px;font-family:var(--font);background:var(--bg);color:var(--txt);resize:none;height:100px;outline:none;line-height:1.5;transition:border-color .2s" placeholder="Type your translation here..." onfocus="this.style.borderColor='var(--txt)'" onblur="this.style.borderColor='var(--border2)'" onkeydown="if(event.key==='Enter'&&event.ctrlKey)submitTranslate()">${ds.userText}</textarea>
+
+    ${!ds.started
+      ?`<button class="btn btn-primary" style="margin-top:12px" onclick="startTranslateTimer()">Lancer</button>`
+      :`<button class="btn btn-primary" style="margin-top:12px" onclick="submitTranslate()" ${ds.submitting?'disabled':''}>
+        ${ds.submitting?'<div class="spinner" style="width:18px;height:18px;border-width:2px;display:inline-block;vertical-align:middle"></div> Évaluation...':'Valider'}
+      </button>`}
+  </div>`;
+}
+
+function startTranslateTimer(){
+  drillState.started=true;
+  if(translateTimer) clearInterval(translateTimer);
+  translateTimer = setInterval(()=>{
+    if(!drillState||drillState.mode!=='translate') return clearInterval(translateTimer);
+    drillState.timeLeft--;
+    if(drillState.timeLeft<=0){ clearInterval(translateTimer); drillState.timeLeft=0; submitTranslate(); return; }
+    const el=document.querySelector('.timer-display');
+    if(el){ const r=drillState.timeLeft; el.textContent=`${Math.floor(r/60)}:${String(r%60).padStart(2,'0')}`; el.style.color=r<=20?'var(--red)':r<=40?'var(--orange)':'var(--txt)'; }
+    drillState.userText=document.getElementById('tr-input')?.value||'';
+  },1000);
+  render();
+}
+
+async function submitTranslate(){
+  if(drillState.submitting) return;
+  clearInterval(translateTimer);
+  drillState.userText = document.getElementById('tr-input')?.value || drillState.userText;
+  if(!drillState.userText.trim()){ alert('Écris ta traduction !'); return; }
+  drillState.submitting=true;
+  render();
+
+  const { fr, level } = drillState.sentence;
+  const userTr = drillState.userText;
+
+  try{
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:400,
+        system:`Tu es un professeur d'anglais. Évalue une traduction FR→EN. Réponds UNIQUEMENT en JSON: {"score":0-10,"correct":true/false,"reference":"une bonne traduction possible","error":"erreur principale en 1 phrase","tip":"conseil en 1 phrase"}. Sois concis.`,
+        messages:[{role:'user',content:`Phrase originale (FR): "${fr}"\nNiveau cible: ${level}\nTraduction de l'élève: "${userTr}"`}]
+      })
+    });
+    const data = await res.json();
+    const txt = data.content?.find(b=>b.type==='text')?.text||'{}';
+    const result = JSON.parse(txt.replace(/```json|```/g,'').trim());
+    drillState.feedback=result;
+    drillState.submitting=false;
+    S.translateDone=(S.translateDone||0)+1;
+    addXP(result.score>=7?12:result.score>=4?6:3);
+    saveState();
+    if(result.score>=9) launchConfetti();
+    if(result.correct) playCorrect(); else playWrong();
+    render();
+  }catch(e){
+    drillState.submitting=false;
+    drillState.feedback={score:5,correct:false,reference:'Évaluation hors-ligne indisponible.',error:'',tip:'Continue à t\'entraîner !'};
+    render();
+  }
+}
+
+function renderTranslateFeedback(m){
+  const ds=drillState, fb=ds.feedback;
+  const ok=fb.correct||fb.score>=7;
+  m.innerHTML=`<div class="screen">
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:16px;text-align:center">Résultat</p>
+
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="display:inline-flex;align-items:center;gap:12px;padding:16px 24px;background:${ok?'var(--green-bg)':'var(--red-bg)'};border-radius:var(--radius)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">${ok?'<path d="M5 12l5 5L19 7" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'
+        :'<path d="M6 6l12 12M18 6L6 18" stroke="var(--red)" stroke-width="2.5" stroke-linecap="round"/>'}
+        </svg>
+        <span style="font-size:32px;font-weight:700;color:${ok?'var(--green)':'var(--red)'};font-family:var(--mono)">${fb.score}/10</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <div style="padding:12px 14px;background:var(--bg2);border-radius:var(--radius-sm)">
+        <p style="font-size:11px;color:var(--txt3);margin-bottom:4px">Ta traduction</p>
+        <p style="font-size:14px;font-style:italic">"${ds.userText}"</p>
+      </div>
+      ${fb.reference?`<div style="padding:12px 14px;background:var(--green-bg);border-radius:var(--radius-sm);border-left:3px solid var(--green)">
+        <p style="font-size:11px;color:var(--green-txt);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:600">Référence</p>
+        <p style="font-size:14px;line-height:1.5;color:var(--green-txt)">${fb.reference}</p>
+      </div>`:''}
+      ${fb.error?`<div style="padding:12px 14px;background:var(--orange-bg);border-radius:var(--radius-sm);border-left:3px solid var(--orange)">
+        <p style="font-size:11px;color:var(--orange-txt);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:600">À corriger</p>
+        <p style="font-size:14px;line-height:1.5;color:var(--orange-txt)">${fb.error}</p>
+      </div>`:''}
+      ${fb.tip?`<div style="padding:12px 14px;background:var(--blue-bg);border-radius:var(--radius-sm);border-left:3px solid var(--blue)">
+        <p style="font-size:11px;color:var(--blue-txt);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:600">Conseil</p>
+        <p style="font-size:14px;line-height:1.5;color:var(--blue-txt)">${fb.tip}</p>
+      </div>`:''}
+    </div>
+
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-ghost" style="flex:1" onclick="drillState=null;currentView='modes';render()">Retour</button>
+      <button class="btn btn-primary" style="flex:1" onclick="startTranslateMode()">Suivante →</button>
+    </div>
+  </div>`;
+}
+
+function exitTranslateMode(){
+  clearInterval(translateTimer);
+  drillState=null;
+  currentView='modes';
+  render();
+}
+
+// ═══════════════════════════════════════
+// BLITZ MODE
+// ═══════════════════════════════════════
+let blitzTimer=null;
+let blitzShake=false;
+
+function startBlitz(category){
+  const words = shuffle([...BLITZ_DB[category]]);
+  const dir = Math.random()>0.5?'en-fr':'fr-en'; // alternera à chaque mot
+  drillState = {
+    mode:'blitz', category, words, wi:0,
+    score:0, timeLeft:60, started:false,
+    currentDir:dir, input:'', error:false,
+    wrongCount:0
+  };
+  render();
+}
+
+function renderBlitzMode(m){
+  const ds=drillState;
+  document.getElementById('hdr-sub').textContent='Blitz';
+
+  if(!ds.started){
+    const catLabels={transitions:'Transitions',connectors:'Connecteurs',adverbs:'Adverbes',idioms:'Expressions',business:'Business',mywords:'Mes mots'};
+    const rec=(S.blitzRecords||{})[ds.category]||0;
+    m.innerHTML=`<div class="screen" style="text-align:center;padding-top:40px">
+      <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">${catLabels[ds.category]}</p>
+      <p style="font-size:28px;font-weight:700;margin-bottom:6px">1 minute</p>
+      <p style="font-size:14px;color:var(--txt2);margin-bottom:4px">Trouve le maximum de traductions</p>
+      <p style="font-size:13px;color:var(--txt3);margin-bottom:32px">EN → FR  et  FR → EN  — alternance aléatoire</p>
+      ${rec>0?`<div style="margin-bottom:28px"><p style="font-size:13px;color:var(--txt3)">Ton record</p><p style="font-size:40px;font-weight:700;font-family:var(--mono)">${rec}</p></div>`:''}
+      <button class="btn btn-primary" style="max-width:200px;margin:0 auto" onclick="launchBlitz()">
+        <span style="font-size:16px">GO</span>
+      </button>
+      <div style="margin-top:16px"><button class="back-btn" onclick="exitBlitz()">← Retour</button></div>
+    </div>`;
+    return;
+  }
+
+  if(ds.wi>=ds.words.length && ds.timeLeft>0){
+    // All words done, loop
+    drillState.words = shuffle([...BLITZ_DB[ds.category]]);
+    drillState.wi = 0;
+  }
+
+  const word = ds.words[ds.wi%ds.words.length];
+  const isEnFr = ds.currentDir==='en-fr';
+  const question = isEnFr ? word.en : word.fr.split(',')[0].trim();
+  const timerPct = (ds.timeLeft/60)*100;
+  const timerColor = ds.timeLeft<=10?'var(--red)':ds.timeLeft<=20?'var(--orange)':'var(--txt)';
+
+  m.innerHTML=`<div class="screen" style="padding-bottom:10px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <button class="back-btn" onclick="exitBlitz()">← Stop</button>
+      <span style="font-size:22px;font-weight:700;font-family:var(--mono);color:${timerColor}" id="blitz-timer">${ds.timeLeft}</span>
+    </div>
+    <div class="blitz-timer-bar" style="margin-bottom:16px">
+      <div class="blitz-timer-fill" id="blitz-bar" style="width:${timerPct}%;background:${timerColor}"></div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <span class="blitz-hint">${isEnFr?'EN → FR':'FR → EN'}</span>
+      <span style="font-size:22px;font-weight:700;font-family:var(--mono)">${ds.score}</span>
+    </div>
+
+    <div style="padding:24px 16px;text-align:center;background:var(--bg2);border-radius:var(--radius);margin-bottom:16px;${blitzShake?'animation:shake .3s ease':''}">
+      <p class="blitz-word" id="blitz-word">${question}</p>
+    </div>
+
+    <input type="text" class="blitz-input" id="blitz-input" placeholder="${isEnFr?'Traduction française...':'English translation...'}"
+      autocomplete="off" autocorrect="off" spellcheck="false"
+      style="${ds.error?'border-color:var(--red);background:var(--red-bg)':''}"
+      oninput="blitzCheck(this.value)"
+      value="${ds.input}">
+
+    <div style="text-align:center;margin-top:12px">
+      <button style="background:none;border:none;font-size:13px;color:var(--txt3);cursor:pointer;font-family:var(--font);padding:6px 12px" onclick="blitzSkip()">Passer →</button>
+    </div>
+  </div>`;
+
+  setTimeout(()=>{
+    const inp=document.getElementById('blitz-input');
+    if(inp){inp.focus();if(ds.input){inp.setSelectionRange(ds.input.length,ds.input.length);}}
+  },50);
+}
+
+function launchBlitz(){
+  drillState.started=true;
+  if(blitzTimer) clearInterval(blitzTimer);
+  blitzTimer=setInterval(()=>{
+    if(!drillState||drillState.mode!=='blitz') return clearInterval(blitzTimer);
+    drillState.timeLeft--;
+    const timerEl=document.getElementById('blitz-timer');
+    const barEl=document.getElementById('blitz-bar');
+    const col=drillState.timeLeft<=10?'var(--red)':drillState.timeLeft<=20?'var(--orange)':'var(--txt)';
+    if(timerEl){timerEl.textContent=drillState.timeLeft;timerEl.style.color=col;}
+    if(barEl){barEl.style.width=(drillState.timeLeft/60*100)+'%;';barEl.style.background=col;}
+    if(drillState.timeLeft<=0){clearInterval(blitzTimer);finishBlitz();}
+  },1000);
+  render();
+}
+
+function blitzCheck(val){
+  drillState.input=val;
+  const word=drillState.words[drillState.wi%drillState.words.length];
+  const isEnFr=drillState.currentDir==='en-fr';
+  // Acceptable answers
+  const answers = isEnFr
+    ? word.fr.toLowerCase().split(',').map(s=>s.trim()).filter(Boolean)
+    : word.en.toLowerCase().split(',').map(s=>s.trim()).filter(Boolean).concat(
+        word.en.toLowerCase().split('/').map(s=>s.trim())
+      );
+
+  const userVal = val.toLowerCase().trim();
+  const isCorrect = answers.some(a => {
+    if(a===userVal) return true;
+    if(a.includes(userVal) && userVal.length>=3 && a.startsWith(userVal)) return true;
+    return false;
+  });
+
+  if(isCorrect){
+    playCorrect();
+    drillState.score++;
+    drillState.input='';
+    drillState.error=false;
+    // Alternate direction randomly with 60% chance to switch
+    drillState.currentDir=Math.random()>0.4?(drillState.currentDir==='en-fr'?'fr-en':'en-fr'):drillState.currentDir;
+    drillState.wi++;
+    blitzShake=false;
+
+    // Flash score
+    const scoreEl=document.querySelector('.blitz-word')?.parentElement?.nextElementSibling?.nextElementSibling;
+    const wordBox=document.getElementById('blitz-word');
+    if(wordBox){wordBox.parentElement.style.background='var(--green-bg)';setTimeout(()=>{if(wordBox)wordBox.parentElement.style.background='var(--bg2)';},200);}
+
+    render();
+    return;
+  }
+
+  // Wrong — show red briefly if > 4 chars and no match
+  if(userVal.length>=4){
+    const inp=document.getElementById('blitz-input');
+    if(inp&&!drillState.error){
+      drillState.error=true;
+      setTimeout(()=>{drillState.error=false;},600);
+    }
+  } else {
+    drillState.error=false;
+  }
+}
+
+function blitzSkip(){
+  drillState.input='';
+  drillState.error=false;
+  drillState.currentDir=Math.random()>0.5?'en-fr':'fr-en';
+  drillState.wi++;
+  render();
+}
+
+function finishBlitz(){
+  clearInterval(blitzTimer);
+  const cat=drillState.category;
+  const score=drillState.score;
+  if(!S.blitzRecords) S.blitzRecords={};
+  const isRecord = score > (S.blitzRecords[cat]||0);
+  if(isRecord){
+    S.blitzRecords[cat]=score;
+    playRecord();
+    launchConfetti();
+  }
+  addXP(score*2);
+  saveState();
+  drillState={mode:'blitz-result',score,category:cat,isRecord,prev:S.blitzRecords[cat]};
+  render();
+}
+
+function renderBlitzResult(m){
+  const ds=drillState;
+  const catLabels={transitions:'Transitions',connectors:'Connecteurs',adverbs:'Adverbes',idioms:'Expressions',business:'Business'};
+  const rec=(S.blitzRecords||{})[ds.category]||0;
+
+  m.innerHTML=`<div class="screen" style="text-align:center;padding-top:32px">
+    ${ds.isRecord?`<div style="padding:8px 20px;background:var(--green-bg);border-radius:20px;display:inline-block;margin-bottom:16px;animation:recordPop .5s ease">
+      <p style="font-size:12px;font-weight:600;color:var(--green-txt);text-transform:uppercase;letter-spacing:.5px">Nouveau record !</p>
+    </div>`:`<p style="font-size:13px;color:var(--txt2);margin-bottom:16px">Résultat</p>`}
+
+    <div style="padding:28px 0">
+      <p class="blitz-score-big ${ds.isRecord?'record-flash':''}">${ds.score}</p>
+      <p class="blitz-record-label">mots corrects en 1 minute</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:20px 0">
+      <div class="metric"><div class="metric-label">Ce run</div><div class="metric-val">${ds.score}</div></div>
+      <div class="metric"><div class="metric-label">Record</div><div class="metric-val">${rec}</div></div>
+    </div>
+
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:24px">XP gagnés : <strong>+${ds.score*2}</strong></p>
+
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-ghost" style="flex:1" onclick="drillState=null;currentView='modes';render()">Retour</button>
+      <button class="btn btn-primary" style="flex:1" onclick="startBlitz('${ds.category}')">Rejouer</button>
+    </div>
+  </div>`;
+}
+
+function exitBlitz(){
+  clearInterval(blitzTimer);
+  drillState=null;
+  currentView='modes';
+  render();
+}
+
+// ═══════════════════════════════════════
+// QUICK WIN — suggestion anti-friction
+// ═══════════════════════════════════════
+function getQuickWinSuggestion(){
+  const hour = new Date().getHours();
+  const recs = S.blitzRecords||{};
+  const cats = Object.keys(BLITZ_DB);
+  const unbeaten = cats.find(c=>!recs[c]||recs[c]<5);
+  if(unbeaten) return {text:`2 min · Blitz ${unbeaten} — ton record est ${recs[unbeaten]||0}`,action:`startBlitz('${unbeaten}')`};
+  if(hour>=7&&hour<=9) return {text:'Matin idéal pour 1 Pressure test — 6 min',action:"currentView='drill';render()"};
+  return {text:'1 scène à décrire · Améliore ton oral',action:'startSceneMode()'};
+}
+
+// ═══════════════════════════════════════
+// MINI OFFLINE DICTIONARY (500 common words)
+// ═══════════════════════════════════════
+const MINI_DICT = {
+  "ambiguous":     {fr:"ambigu, équivoque",          pos:"adj",   level:"B2"},
+  "assertive":     {fr:"affirmatif, sûr de soi",     pos:"adj",   level:"B2"},
+  "albeit":        {fr:"bien que, quoique",           pos:"conj",  level:"C1"},
+  "aloof":         {fr:"distant, réservé",            pos:"adj",   level:"C1"},
+  "astute":        {fr:"astucieux, perspicace",       pos:"adj",   level:"C1"},
+  "baffled":       {fr:"déconcerté, perplexe",        pos:"adj",   level:"B2"},
+  "blunt":         {fr:"direct, sans détour",         pos:"adj",   level:"B1"},
+  "bold":          {fr:"audacieux, courageux",        pos:"adj",   level:"A2"},
+  "breach":        {fr:"brèche, violation",           pos:"n/v",   level:"B2"},
+  "candid":        {fr:"franc, sincère",              pos:"adj",   level:"B2"},
+  "cautious":      {fr:"prudent, circonspect",        pos:"adj",   level:"B1"},
+  "cling":         {fr:"s'accrocher, se cramponner",  pos:"v",     level:"B2"},
+  "clutch":        {fr:"agripper, saisir",            pos:"v/n",   level:"B2"},
+  "compelling":    {fr:"convaincant, irrésistible",   pos:"adj",   level:"B2"},
+  "comply":        {fr:"se conformer, obéir",         pos:"v",     level:"B2"},
+  "conceive":      {fr:"concevoir, imaginer",         pos:"v",     level:"B2"},
+  "concise":       {fr:"concis, succinct",            pos:"adj",   level:"B2"},
+  "condescending": {fr:"condescendant, hautain",      pos:"adj",   level:"C1"},
+  "confide":       {fr:"se confier, faire confiance", pos:"v",     level:"B2"},
+  "cope":          {fr:"faire face, se débrouiller",  pos:"v",     level:"B1"},
+  "crucial":       {fr:"crucial, essentiel",          pos:"adj",   level:"B1"},
+  "cunning":       {fr:"rusé, malin",                 pos:"adj",   level:"B2"},
+  "daunting":      {fr:"intimidant, décourageant",    pos:"adj",   level:"C1"},
+  "deceive":       {fr:"tromper, duper",              pos:"v",     level:"B2"},
+  "defer":         {fr:"reporter, différer",          pos:"v",     level:"C1"},
+  "deliberately":  {fr:"délibérément, exprès",        pos:"adv",   level:"B2"},
+  "dense":         {fr:"dense, épais",                pos:"adj",   level:"B1"},
+  "detain":        {fr:"détenir, retenir",            pos:"v",     level:"B2"},
+  "deter":         {fr:"dissuader, décourager",       pos:"v",     level:"C1"},
+  "dilemma":       {fr:"dilemme, situation difficile",pos:"n",     level:"B2"},
+  "diminish":      {fr:"diminuer, réduire",           pos:"v",     level:"B2"},
+  "discern":       {fr:"discerner, distinguer",       pos:"v",     level:"C1"},
+  "dismissive":    {fr:"dédaigneux, méprisant",       pos:"adj",   level:"C1"},
+  "disrupt":       {fr:"perturber, interrompre",      pos:"v",     level:"B2"},
+  "dread":         {fr:"redouter, appréhender",       pos:"v/n",   level:"B2"},
+  "dubious":       {fr:"douteux, incertain",          pos:"adj",   level:"C1"},
+  "eager":         {fr:"enthousiaste, impatient",     pos:"adj",   level:"B1"},
+  "elaborate":     {fr:"élaborer, détailler",         pos:"v/adj", level:"B2"},
+  "elusive":       {fr:"insaisissable, fuyant",       pos:"adj",   level:"C1"},
+  "empathy":       {fr:"empathie",                    pos:"n",     level:"B2"},
+  "endeavor":      {fr:"s'efforcer, entreprise",      pos:"v/n",   level:"C1"},
+  "enforce":       {fr:"faire respecter, imposer",    pos:"v",     level:"B2"},
+  "envisage":      {fr:"envisager, prévoir",          pos:"v",     level:"B2"},
+  "erratic":       {fr:"erratique, imprévisible",     pos:"adj",   level:"C1"},
+  "evasive":       {fr:"évasif, fuyant",              pos:"adj",   level:"C1"},
+  "exemplify":     {fr:"illustrer, exemplifier",      pos:"v",     level:"C1"},
+  "exert":         {fr:"exercer, déployer",           pos:"v",     level:"B2"},
+  "exhaustive":    {fr:"exhaustif, complet",          pos:"adj",   level:"C1"},
+  "exploit":       {fr:"exploiter, tirer parti de",   pos:"v/n",   level:"B2"},
+  "fabricate":     {fr:"fabriquer, inventer",         pos:"v",     level:"C1"},
+  "flaw":          {fr:"défaut, imperfection",        pos:"n",     level:"B2"},
+  "flee":          {fr:"fuir, s'enfuir",              pos:"v",     level:"B1"},
+  "fluctuate":     {fr:"fluctuer, varier",            pos:"v",     level:"B2"},
+  "foil":          {fr:"déjouer, contrecarrer",       pos:"v",     level:"C1"},
+  "formidable":    {fr:"redoutable, impressionnant",  pos:"adj",   level:"C1"},
+  "forthcoming":   {fr:"à venir, coopératif",         pos:"adj",   level:"C1"},
+  "forthright":    {fr:"direct, franc",               pos:"adj",   level:"C1"},
+  "frenzy":        {fr:"frénésie, frénétique",        pos:"n",     level:"C1"},
+  "frivolous":     {fr:"frivole, futile",             pos:"adj",   level:"C1"},
+  "futile":        {fr:"futile, inutile",             pos:"adj",   level:"C1"},
+  "genuine":       {fr:"authentique, sincère",        pos:"adj",   level:"B1"},
+  "grasp":         {fr:"saisir, comprendre",          pos:"v/n",   level:"B1"},
+  "grievance":     {fr:"grief, doléance",             pos:"n",     level:"C1"},
+  "grudge":        {fr:"rancune, animosité",          pos:"n",     level:"B2"},
+  "gullible":      {fr:"crédule, naïf",               pos:"adj",   level:"C1"},
+  "hamper":        {fr:"gêner, entraver",             pos:"v",     level:"C1"},
+  "harsh":         {fr:"sévère, rude",                pos:"adj",   level:"B1"},
+  "hinder":        {fr:"entraver, freiner",           pos:"v",     level:"C1"},
+  "hostile":       {fr:"hostile, inamical",           pos:"adj",   level:"B2"},
+  "humble":        {fr:"humble, modeste",             pos:"adj",   level:"A2"},
+  "imminent":      {fr:"imminent, proche",            pos:"adj",   level:"B2"},
+  "impulsive":     {fr:"impulsif",                    pos:"adj",   level:"B2"},
+  "infer":         {fr:"déduire, inférer",            pos:"v",     level:"C1"},
+  "ingenious":     {fr:"ingénieux, astucieux",        pos:"adj",   level:"C1"},
+  "inherent":      {fr:"inhérent, intrinsèque",       pos:"adj",   level:"C1"},
+  "instinct":      {fr:"instinct",                    pos:"n",     level:"B1"},
+  "integrity":     {fr:"intégrité, honnêteté",        pos:"n",     level:"B2"},
+  "intricate":     {fr:"complexe, élaboré",           pos:"adj",   level:"C1"},
+  "intuition":     {fr:"intuition",                   pos:"n",     level:"B2"},
+  "lure":          {fr:"attirer, appâter",            pos:"v/n",   level:"C1"},
+  "malicious":     {fr:"malveillant, mauvais",        pos:"adj",   level:"C1"},
+  "manipulate":    {fr:"manipuler",                   pos:"v",     level:"B2"},
+  "meticulous":    {fr:"méticuleux, minutieux",       pos:"adj",   level:"C1"},
+  "misconception": {fr:"idée fausse, malentendu",     pos:"n",     level:"C1"},
+  "mundane":       {fr:"banal, ordinaire",            pos:"adj",   level:"C1"},
+  "naive":         {fr:"naïf, candide",               pos:"adj",   level:"B1"},
+  "negligent":     {fr:"négligent",                   pos:"adj",   level:"C1"},
+  "obscure":       {fr:"obscur, peu connu",           pos:"adj",   level:"C1"},
+  "obstinate":     {fr:"obstiné, têtu",               pos:"adj",   level:"C1"},
+  "ominous":       {fr:"menaçant, de mauvais augure", pos:"adj",   level:"C1"},
+  "outrage":       {fr:"scandale, indignation",       pos:"n/v",   level:"B2"},
+  "oversight":     {fr:"oubli, surveillance",         pos:"n",     level:"C1"},
+  "persist":       {fr:"persister, s'obstiner",       pos:"v",     level:"B2"},
+  "pertinent":     {fr:"pertinent, approprié",        pos:"adj",   level:"C1"},
+  "plausible":     {fr:"plausible, crédible",         pos:"adj",   level:"C1"},
+  "plead":         {fr:"plaider, supplier",           pos:"v",     level:"B2"},
+  "ponder":        {fr:"réfléchir, méditer",          pos:"v",     level:"C1"},
+  "portray":       {fr:"dépeindre, représenter",      pos:"v",     level:"C1"},
+  "premise":       {fr:"prémisse, hypothèse",         pos:"n",     level:"C1"},
+  "presume":       {fr:"présumer, supposer",          pos:"v",     level:"B2"},
+  "prominent":     {fr:"éminent, en vue",             pos:"adj",   level:"C1"},
+  "provoke":       {fr:"provoquer, susciter",         pos:"v",     level:"B2"},
+  "prudent":       {fr:"prudent, sage",               pos:"adj",   level:"B2"},
+  "pursue":        {fr:"poursuivre, chercher",        pos:"v",     level:"B1"},
+  "reckless":      {fr:"imprudent, téméraire",        pos:"adj",   level:"B2"},
+  "reluctant":     {fr:"réticent, peu disposé",       pos:"adj",   level:"B2"},
+  "remorse":       {fr:"remords",                     pos:"n",     level:"C1"},
+  "resilient":     {fr:"résilient, résistant",        pos:"adj",   level:"B2"},
+  "restrain":      {fr:"retenir, réfréner",           pos:"v",     level:"B2"},
+  "retaliate":     {fr:"riposter, se venger",         pos:"v",     level:"C1"},
+  "ruthless":      {fr:"impitoyable, sans pitié",     pos:"adj",   level:"C1"},
+  "sarcastic":     {fr:"sarcastique",                 pos:"adj",   level:"B2"},
+  "scrutinize":    {fr:"scruter, examiner",           pos:"v",     level:"C1"},
+  "sinister":      {fr:"sinistre, menaçant",          pos:"adj",   level:"B2"},
+  "skeptical":     {fr:"sceptique",                   pos:"adj",   level:"B2"},
+  "smug":          {fr:"suffisant, content de soi",   pos:"adj",   level:"C1"},
+  "solemn":        {fr:"solennel, grave",             pos:"adj",   level:"C1"},
+  "sophisticated": {fr:"sophistiqué, raffiné",        pos:"adj",   level:"B2"},
+  "spontaneous":   {fr:"spontané",                    pos:"adj",   level:"B1"},
+  "stagnant":      {fr:"stagnant, immobile",          pos:"adj",   level:"C1"},
+  "subtle":        {fr:"subtil, discret",             pos:"adj",   level:"B2"},
+  "succumb":       {fr:"succomber, céder",            pos:"v",     level:"C1"},
+  "suppress":      {fr:"réprimer, étouffer",          pos:"v",     level:"C1"},
+  "surge":         {fr:"monter en flèche, affluer",   pos:"v/n",   level:"B2"},
+  "susceptible":   {fr:"susceptible, vulnérable",     pos:"adj",   level:"C1"},
+  "suspicious":    {fr:"méfiant, suspect",            pos:"adj",   level:"B1"},
+  "tedious":       {fr:"fastidieux, ennuyeux",        pos:"adj",   level:"B2"},
+  "tempt":         {fr:"tenter, séduire",             pos:"v",     level:"B1"},
+  "tentative":     {fr:"provisoire, hésitant",        pos:"adj",   level:"C1"},
+  "thwart":        {fr:"contrecarrer, déjouer",       pos:"v",     level:"C1"},
+  "transparent":   {fr:"transparent, évident",        pos:"adj",   level:"B1"},
+  "treacherous":   {fr:"traître, perfide",            pos:"adj",   level:"C1"},
+  "trivial":       {fr:"trivial, sans importance",    pos:"adj",   level:"B2"},
+  "turbulent":     {fr:"turbulent, agité",            pos:"adj",   level:"B2"},
+  "undermine":     {fr:"saper, miner",                pos:"v",     level:"C1"},
+  "uneasy":        {fr:"mal à l'aise, inquiet",       pos:"adj",   level:"B1"},
+  "unravel":       {fr:"démêler, s'effondrer",        pos:"v",     level:"C1"},
+  "vague":         {fr:"vague, flou",                 pos:"adj",   level:"A2"},
+  "vanish":        {fr:"disparaître",                 pos:"v",     level:"B1"},
+  "verdict":       {fr:"verdict, jugement",           pos:"n",     level:"B2"},
+  "vigilant":      {fr:"vigilant, attentif",          pos:"adj",   level:"C1"},
+  "vindictive":    {fr:"vindicatif, rancunier",       pos:"adj",   level:"C1"},
+  "vulnerable":    {fr:"vulnérable",                  pos:"adj",   level:"B1"},
+  "wary":          {fr:"méfiant, prudent",            pos:"adj",   level:"C1"},
+  "withhold":      {fr:"retenir, refuser de donner",  pos:"v",     level:"C1"},
+  "yield":         {fr:"céder, produire",             pos:"v",     level:"B2"}
+};
+
+function lookupOffline(word){
+  const w = word.toLowerCase().trim();
+  return MINI_DICT[w] || null;
+}
+
+async function lookupAI(word){
+  if(!getApiKey()) return null;
+  try{
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:250,
+        system:`Tu es un dictionnaire anglais-français. Réponds UNIQUEMENT en JSON valide sans markdown: {"fr":"traduction courte","pos":"n/v/adj/adv/conj/expr","level":"A2/B1/B2/C1/C2","example":"1 phrase anglaise naturelle courte","exampleFr":"sa traduction"}`,
+        messages:[{role:'user',content:`Mot: "${word}"`}]
+      })
+    });
+    const data = await res.json();
+    const txt = data.content?.find(b=>b.type==='text')?.text||'{}';
+    return JSON.parse(txt.replace(/```json|```/g,'').trim());
+  }catch(e){ return null; }
+}
+
+// ═══════════════════════════════════════
+// WORD LOOKUP SCREEN
+// ═══════════════════════════════════════
+function startWordLookup(){
+  drillState={mode:'wordlookup', word:'', result:null, loading:false, saved:false};
+  render();
+}
+
+function renderWordLookup(m){
+  const ds=drillState;
+  document.getElementById('hdr-sub').textContent='Ajouter un mot';
+  m.innerHTML=`<div class="screen">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <button class="back-btn" onclick="drillState=null;currentView='drill';render()">← Retour</button>
+    </div>
+
+    <p style="font-size:22px;font-weight:700;margin-bottom:6px">Quel mot ?</p>
+    <p style="font-size:14px;color:var(--txt2);margin-bottom:20px">Tape un mot anglais pour voir sa traduction et l'ajouter à ta liste.</p>
+
+    <input type="text" class="lookup-input" id="lookup-word"
+      placeholder="e.g. tenacious..."
+      value="${ds.word}"
+      autocomplete="off" autocorrect="off" spellcheck="false"
+      autofocus
+      style="margin-bottom:12px"
+      onkeydown="if(event.key==='Enter')doLookup()">
+    <button class="btn btn-primary" style="margin-bottom:24px" onclick="doLookup()" ${ds.loading?'disabled':''}>
+      ${ds.loading?'<div class="spinner" style="width:18px;height:18px;border-width:2px;display:inline-block;vertical-align:middle"></div> Recherche...':'Rechercher'}
+    </button>
+
+    ${ds.result ? renderLookupResult(ds) : ''}
+
+    ${Object.keys(S.myWords||{}).length>0 ? `
+      <div style="margin-top:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px">Récemment ajoutés</p>
+          <button style="background:none;border:none;font-size:13px;color:var(--txt2);cursor:pointer;font-family:var(--font)" onclick="renderMyWordsScreen()">Voir tout →</button>
+        </div>
+        ${Object.values(S.myWords).slice(-4).reverse().map(w=>renderWordCardMini(w)).join('')}
+      </div>
+    ` : ''}
+  </div>`;
+  setTimeout(()=>document.getElementById('lookup-word')?.focus(),100);
+}
+
+function renderLookupResult(ds){
+  const r=ds.result;
+  const levelColor = r.level==='C2'||r.level==='C1'?'var(--orange-txt)':r.level==='B2'||r.level==='B1'?'var(--blue-txt)':'var(--green-txt)';
+  const levelBg = r.level==='C2'||r.level==='C1'?'var(--orange-bg)':r.level==='B2'||r.level==='B1'?'var(--blue-bg)':'var(--green-bg)';
+  return `<div class="lookup-result">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+      <div>
+        <p style="font-size:24px;font-weight:700;letter-spacing:-.5px;margin-bottom:4px">${ds.word}</p>
+        <p style="font-size:16px;color:var(--txt2)">${r.fr||'—'}</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+        <span style="font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;background:${levelBg};color:${levelColor}">${r.level||'?'}</span>
+        <span style="font-size:11px;padding:3px 8px;border-radius:20px;background:var(--bg3);color:var(--txt2)">${r.pos||''}</span>
+      </div>
+    </div>
+    ${r.example?`
+      <div style="padding:10px 12px;background:var(--bg3);border-radius:var(--radius-sm);margin-bottom:14px">
+        <p style="font-size:13px;font-style:italic;line-height:1.5;margin-bottom:4px">"${r.example}"</p>
+        <p style="font-size:12px;color:var(--txt3);line-height:1.4">${r.exampleFr||''}</p>
+      </div>
+    `:''}
+    ${ds.saved
+      ? `<div style="padding:10px 12px;background:var(--green-bg);border-radius:var(--radius-sm);text-align:center">
+           <p style="font-size:13px;font-weight:600;color:var(--green-txt)">Ajouté à Mes mots ✓</p>
+         </div>`
+      : `<button class="btn btn-primary" onclick="saveMyWord()">Ajouter à Mes mots</button>`
+    }
+    <button class="btn btn-ghost" style="margin-top:8px" onclick="speak('${ds.word.replace(/'/g,"\\'")}',null)">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:middle;margin-right:6px"><path d="M2 5l4 2.5L2 10V5z" fill="currentColor"/><path d="M7.5 3c2 .8 3 2 3 4s-1 3.2-3 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      Écouter la prononciation
+    </button>
+  </div>`;
+}
+
+async function doLookup(){
+  const input=document.getElementById('lookup-word');
+  if(!input) return;
+  const word=input.value.trim().toLowerCase();
+  if(!word) return;
+  drillState.word=word;
+  drillState.loading=true;
+  drillState.result=null;
+  drillState.saved=false;
+  render();
+
+  // Offline first
+  let result=lookupOffline(word);
+  if(!result) result=await lookupAI(word);
+  if(!result) result={fr:'Mot non trouvé',pos:'?',level:'?',example:'',exampleFr:''};
+
+  drillState.loading=false;
+  drillState.result=result;
+  render();
+}
+
+function saveMyWord(){
+  const ds=drillState;
+  if(!ds.result||!ds.word) return;
+  const id='mw_'+ds.word.replace(/\s+/g,'_');
+  if(!S.myWords) S.myWords={};
+  S.myWords[id]={
+    id, word:ds.word, fr:ds.result.fr, pos:ds.result.pos||'',
+    level:ds.result.level||'?', example:ds.result.example||'',
+    exampleFr:ds.result.exampleFr||'', addedAt:new Date().toISOString(),
+    source:''
+  };
+  // Init FSRS card for this word
+  if(!S.cards[id]) S.cards[id]=FSRS.initCard();
+  addXP(3);
+  saveState();
+  ds.saved=true;
+  playCorrect();
+  render();
+}
+
+function renderWordCardMini(w){
+  const card=S.cards[w.id];
+  const stateClass=!card||card.state==='new'?'word-card-new':card.reps>=3?'mastered':'learning';
+  return `<div class="word-card ${stateClass}" onclick="startWordLookup();drillState.word='${w.word}';drillState.result={fr:'${w.fr.replace(/'/g,"\\'")}',pos:'${w.pos}',level:'${w.level}',example:'${(w.example||'').replace(/'/g,"\\'")}',exampleFr:'${(w.exampleFr||'').replace(/'/g,"\\'")}',saved:true}">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div>
+      <p class="word-en">${w.word}</p>
+      <p class="word-fr">${w.fr}</p>
+    </div>
+    <div style="text-align:right">
+      <span class="word-pill" style="background:var(--bg3)">${w.level}</span>
+    </div>
+  </div>
+  <div class="word-meta">
+    ${w.pos?`<span class="word-pill">${w.pos}</span>`:''}
+  </div>
+</div>`;
+}
+
+// ═══════════════════════════════════════
+// MES MOTS — liste complète + entraînement
+// ═══════════════════════════════════════
+function renderMyWordsScreen(){
+  drillState=null;
+  currentView='mywords';
+  render();
+}
+
+function renderMyWords(m){
+  const words=Object.values(S.myWords||{}).sort((a,b)=>new Date(b.addedAt)-new Date(a.addedAt));
+  const total=words.length;
+  const mastered=words.filter(w=>{ const c=S.cards[w.id]; return c&&c.reps>=3&&c.stability>30; }).length;
+  const learning=words.filter(w=>{ const c=S.cards[w.id]; return c&&c.state==='learning'; }).length;
+  document.getElementById('hdr-sub').textContent='';
+
+  m.innerHTML=`<div class="screen">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <p style="font-size:18px;font-weight:700">Mes mots</p>
+      <button class="btn btn-primary" style="width:auto;padding:8px 16px;font-size:13px" onclick="startWordLookup()">+ Ajouter</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px">
+      <div class="metric"><div class="metric-label">Total</div><div class="metric-val">${total}</div></div>
+      <div class="metric"><div class="metric-label">Maîtrisés</div><div class="metric-val">${mastered}</div></div>
+      <div class="metric"><div class="metric-label">En cours</div><div class="metric-val">${learning}</div></div>
+    </div>
+
+    ${total>0?`
+      <div style="display:flex;gap:8px;margin-bottom:20px">
+        <button class="btn btn-primary" style="flex:1;padding:12px;font-size:14px" onclick="startMyWordsLearn()">Leçon →</button>
+        <button class="btn btn-ghost" style="flex:1;padding:12px;font-size:14px" onclick="startMyWordsBlitz()">Blitz 1min</button>
+      </div>
+    `:''}
+
+    ${total===0?`
+      <div style="text-align:center;padding:48px 20px">
+        <p style="font-size:15px;font-weight:500;margin-bottom:8px">Aucun mot encore</p>
+        <p style="font-size:13px;color:var(--txt2);margin-bottom:24px;line-height:1.5">Tu regardes un film et tu entends un mot inconnu ?<br>Ajoute-le ici pour l'apprendre.</p>
+        <button class="btn btn-primary" style="max-width:200px;margin:0 auto" onclick="startWordLookup()">Ajouter mon premier mot</button>
+      </div>
+    `:words.map((w,i)=>`
+      <div class="word-card" style="animation-delay:${i*.03}s">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+              <p class="word-en">${w.word}</p>
+              <button style="background:none;border:none;cursor:pointer;color:var(--txt3);padding:0;font-size:11px;font-family:var(--font)" onclick="speak('${w.word.replace(/'/g,"\\'")}',null)">▶</button>
+            </div>
+            <p class="word-fr">${w.fr}</p>
+            ${w.example?`<p style="font-size:12px;color:var(--txt3);font-style:italic;margin-top:6px;line-height:1.4">"${w.example}"</p>`:''}
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;margin-left:12px">
+            <span class="word-pill">${w.level}</span>
+            ${w.pos?`<span class="word-pill" style="opacity:.7">${w.pos}</span>`:''}
+            <button style="background:none;border:none;cursor:pointer;color:var(--red-txt);padding:2px;font-size:11px;font-family:var(--font);margin-top:4px" onclick="deleteMyWord('${w.id}')">✕</button>
+          </div>
+        </div>
+      </div>
+    `).join('')}
+  </div>`;
+}
+
+function deleteMyWord(id){
+  if(!confirm('Supprimer ce mot ?')) return;
+  delete S.myWords[id];
+  delete S.cards[id];
+  saveState();
+  render();
+}
+
+function startMyWordsLearn(){
+  const words=shuffle(Object.values(S.myWords||{})).slice(0,12);
+  if(!words.length){alert('Aucun mot à apprendre.');return;}
+  const cards=words.map(w=>({
+    id:w.id, type:'myword',
+    front:w.word, frontSub:w.pos||'',
+    back:w.fr, example:w.example||'', exampleFr:w.exampleFr||'', level:w.level
+  }));
+  drillState={mode:'learn',type:'mywords',cards,ci:0,flipped:false,seen:0};
+  render();
+}
+
+function startMyWordsBlitz(){
+  const words=Object.values(S.myWords||{});
+  if(words.length<3){alert('Ajoute au moins 3 mots pour lancer un Blitz.');return;}
+  // Inject into blitz engine with custom category
+  const customWords=words.map(w=>({en:w.word,fr:w.fr}));
+  BLITZ_DB['mywords']=customWords;
+  startBlitz('mywords');
+}
+
+// ═══════════════════════════════════════
+// STREAK CALENDAR
+// ═══════════════════════════════════════
+function renderStreakCalendar(){
+  const log = new Set(S.activityLog||[]);
+  const todayStr = today();
+  const days=[];
+  for(let i=27;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const ds=d.toISOString().slice(0,10);days.push({ds,active:log.has(ds),isToday:ds===todayStr});}
+  const cells=days.map(d=>`<div class="cal-day${d.active?' active':''}${d.isToday?' today':''}"></div>`).join('');
+  const dayLabels=['L','M','M','J','V','S','D'].map(l=>`<div style="font-size:9px;color:var(--txt3);text-align:center">${l}</div>`).join('');
+  const activeLast28=days.filter(d=>d.active).length;
+  return `<div style="animation:fadeUp .35s ease .2s both">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span style="font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px">Activité · 28 jours</span>
+      <span style="font-size:11px;color:var(--txt3)">${activeLast28}/28</span>
+    </div>
+    <div style="background:var(--bg2);border-radius:var(--radius-sm);padding:12px">
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4px">${dayLabels}</div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px">${cells}</div>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════
+// FAVORITES
+// ═══════════════════════════════════════
+function toggleFavorite(id,e){
+  if(e) e.stopPropagation();
+  if(!S.favorites) S.favorites={};
+  if(S.favorites[id]) delete S.favorites[id]; else S.favorites[id]=true;
+  saveState();
+  // Re-render just the fav button without full render
+  const btn=document.querySelector(`[data-fav="${id}"]`);
+  if(btn){const on=!!S.favorites[id];btn.classList.toggle('active',on);btn.querySelector('svg').setAttribute('fill',on?'currentColor':'none');}
+}
+function isFav(id){return !!(S.favorites&&S.favorites[id]);}
+function favIcon(id){
+  const on=isFav(id);
+  return `<button class="fav-btn${on?' active':''}" data-fav="${id}" onclick="toggleFavorite('${id}',event)">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="${on?'currentColor':'none'}" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+      <path d="M8 2l1.8 3.6 4.2.6-3 2.9.7 4.1L8 11.4l-3.7 1.9.7-4.1-3-2.9 4.2-.6z"/>
+    </svg>
+  </button>`;
+}
+function startFavoriteDrill(){
+  const favIds=Object.keys(S.favorites||{});
+  if(!favIds.length){alert('Aucun favori. Marque des mots avec ★ pendant les leçons.');return;}
+  const pool=getAllCards().filter(c=>favIds.includes(c.id));
+  const cards=shuffle(pool).slice(0,20).map(c=>({
+    id:c.id,type:c.type,
+    front:c.display||c.word||c.infinitive,frontSub:c.fr,
+    back:c.type==='verb'?`${c.past} / ${c.pp}`:c.fr,
+    example:c.example,exampleFr:c.exampleFr||'',level:c.level
+  }));
+  drillState={mode:'learn',type:'favs',cards,ci:0,flipped:false,seen:0};
+  render();
+}
+
+// ═══════════════════════════════════════
+// WEB SPEECH — Écoute & répète
+// ═══════════════════════════════════════
+function speak(text,onEnd){
+  if(!S.speechEnabled||!window.speechSynthesis){onEnd&&onEnd();return;}
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.88;u.pitch=1;
+  const voices=window.speechSynthesis.getVoices();
+  const en=voices.find(v=>v.lang.startsWith('en')&&v.localService)||voices.find(v=>v.lang.startsWith('en'));
+  if(en) u.voice=en;
+  u.onend=()=>onEnd&&onEnd();
+  window.speechSynthesis.speak(u);
+}
+function startListenRepeat(){
+  const pool=shuffle(getAllCards()).slice(0,10).map(c=>({id:c.id,en:c.display||c.word||c.infinitive,fr:c.fr,example:c.example||''}));
+  drillState={mode:'listen',cards:pool,ci:0,phase:'listen',listening:false};
+  render();
+}
+function renderListenMode(m){
+  const ds=drillState;
+  if(ds.ci>=ds.cards.length){addXP(20);saveState();drillState=null;currentView='drill';render();return;}
+  const card=ds.cards[ds.ci];
+  document.getElementById('hdr-sub').textContent='Écoute & répète';
+  m.innerHTML=`<div class="screen" style="text-align:center">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <button class="back-btn" onclick="exitDrill()">← Retour</button>
+      <span style="font-size:13px;color:var(--txt3)">${ds.ci+1}/${ds.cards.length}</span>
+    </div>
+    <div class="progress-track" style="margin-bottom:32px"><div class="progress-fill" style="width:${Math.round(ds.ci/ds.cards.length*100)}%"></div></div>
+    <div style="padding:32px 20px;background:var(--bg2);border-radius:var(--radius);margin-bottom:24px;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+      ${ds.phase==='listen'?`
+        <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px">Écoute</p>
+        <p style="font-size:36px;font-weight:700;margin-bottom:8px">${card.en}</p>
+        <p style="font-size:15px;color:var(--txt2)">${card.fr}</p>
+        ${ds.listening?`<div class="speech-wave" style="margin-top:16px"><span></span><span></span><span></span></div>`:''}
+      `:`
+        <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px">Répète à voix haute</p>
+        <p style="font-size:36px;font-weight:700;margin-bottom:12px">${card.en}</p>
+        <p style="font-size:13px;color:var(--txt3);font-style:italic;line-height:1.4;max-width:260px">${card.example}</p>
+      `}
+    </div>
+    ${ds.phase==='listen'?`
+      <button class="btn btn-primary" onclick="listenPlay()" ${ds.listening?'disabled':''}>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:middle;margin-right:6px"><path d="M3 2l9 5-9 5V2z" fill="currentColor"/></svg>
+        ${ds.listening?'Lecture...':'Écouter'}
+      </button>
+      ${!ds.listening?`<button class="btn btn-ghost" style="margin-top:8px" onclick="listenSkip()">Passer</button>`:''}
+    `:`<button class="btn btn-primary" onclick="listenNext()">Suivant →</button>`}
+  </div>`;
+}
+function listenPlay(){drillState.listening=true;render();speak(drillState.cards[drillState.ci].en,()=>{if(drillState&&drillState.mode==='listen'){drillState.listening=false;drillState.phase='repeat';render();}});}
+function listenNext(){drillState.ci++;drillState.phase='listen';drillState.listening=false;render();}
+function listenSkip(){drillState.phase='repeat';drillState.listening=false;render();}
+
+// ═══════════════════════════════════════
+// PWA NOTIFICATIONS
+// ═══════════════════════════════════════
+const NOTIF_MSGS=[
+  '2 minutes suffisent. Lance un Blitz maintenant.',
+  'Ton niveau {level} peut encore progresser ce soir.',
+  'Série : {streak} jours. Garde le rythme.',
+  'Un mot de transition t\'attend. 60 secondes.',
+  'Ouvre l\'app, fais une scène. C\'est tout.',
+  'Les verbes irréguliers ne se mémorisent pas seuls.',
+  'Aujourd\'hui : 1 Blitz = 2 min = des mots en plus.',
+];
+async function requestNotifPermission(){
+  if(!('Notification' in window)) return false;
+  if(Notification.permission==='granted') return true;
+  return (await Notification.requestPermission())==='granted';
+}
+function scheduleNotification(){
+  if(!S.notifEnabled||!('Notification' in window)||Notification.permission!=='granted') return;
+  clearTimeout(window._notifTimeout);
+  const [h,min]=(S.notifTime||'20:00').split(':').map(Number);
+  const target=new Date();target.setHours(h,min,0,0);
+  if(target<=new Date()) target.setDate(target.getDate()+1);
+  window._notifTimeout=setTimeout(()=>{
+    const msg=NOTIF_MSGS[Math.floor(Math.random()*NOTIF_MSGS.length)].replace('{level}',S.level||'B1').replace('{streak}',S.streak||1);
+    new Notification('Finance Commando',{body:msg,icon:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="%23111"/><text x="16" y="22" font-size="14" text-anchor="middle" fill="white" font-weight="bold">FC</text></svg>'});
+    scheduleNotification(); // reschedule for next day
+  },target-new Date());
+}
+async function toggleNotif(){
+  if(!S.notifEnabled){
+    const ok=await requestNotifPermission();
+    if(!ok){alert('Autorise les notifications dans les réglages de ton navigateur.');return;}
+    S.notifEnabled=true;
+  } else {
+    S.notifEnabled=false;
+    clearTimeout(window._notifTimeout);
+  }
+  saveState();scheduleNotification();render();
+}
+function renderNotifSettings(){
+  const supported='Notification' in window;
+  const perm=supported?Notification.permission:'none';
+  return `<div style="padding:16px;background:var(--bg2);border-radius:var(--radius);margin-bottom:20px">
+    <p style="font-size:12px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px">Rappel quotidien</p>
+    ${!supported?`<p style="font-size:13px;color:var(--txt3)">Non supporté sur ce navigateur.</p>`:`
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
+        <span style="font-size:14px">Activer les rappels</span>
+        <button class="toggle ${S.notifEnabled?'on':''}" onclick="toggleNotif()"></button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0">
+        <span style="font-size:14px;color:${S.notifEnabled?'var(--txt)':'var(--txt3)'}">Heure du rappel</span>
+        <input type="time" value="${S.notifTime||'20:00'}" style="font-size:14px;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:4px 8px;color:var(--txt);font-family:var(--font);outline:none;${S.notifEnabled?'':'opacity:.4;pointer-events:none'}" onchange="S.notifTime=this.value;saveState();scheduleNotification()">
+      </div>
+      ${perm==='denied'?`<p style="font-size:12px;color:var(--orange);margin-top:4px;line-height:1.4">Notifications bloquées dans le navigateur.</p>`:''}
+      ${perm==='granted'&&S.notifEnabled?`<p style="font-size:12px;color:var(--green-txt);margin-top:4px">Rappel programmé à ${S.notifTime||'20:00'} chaque soir.</p>`:''}
+    `}
+  </div>`;
+}
+
+document.addEventListener('keydown', e => {
+  if(!drillState) return;
+  if(drillState.mode==='pressure' && drillState.revealed){
+    if(e.key==='1') ratePressure(1);
+    else if(e.key==='2') ratePressure(2);
+    else if(e.key==='3') ratePressure(3);
+    else if(e.key==='4') ratePressure(4);
+    else if(e.key===' ' || e.key==='Enter') revealPressure();
+  }
+  if(drillState.mode==='pressure' && !drillState.revealed){
+    if(e.key===' ' || e.key==='Enter'){ e.preventDefault(); revealPressure(); }
+  }
+});
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+// Ensure new fields exist on old saves
+if(S.favorites===undefined) S.favorites={};
+if(S.activityLog===undefined) S.activityLog=[];
+if(S.notifTime===undefined) S.notifTime='20:00';
+if(S.notifEnabled===undefined) S.notifEnabled=false;
+if(S.speechEnabled===undefined) S.speechEnabled=true;
+if(S.darkMode===undefined) S.darkMode=true;
+if(S.myWords===undefined) S.myWords={};
+
+// Log today as active
+(function logToday(){
+  const t=today();
+  if(!S.activityLog.includes(t)){ S.activityLog.push(t); if(S.activityLog.length>90) S.activityLog=S.activityLog.slice(-90); saveState(); }
+})();
+
+document.documentElement.setAttribute('data-theme', S.darkMode?'dark':'');
+document.getElementById('dm-btn').textContent = S.darkMode?'light':'dark';
+scheduleNotification();
+render();
+</script>
+</body>
+</html>
